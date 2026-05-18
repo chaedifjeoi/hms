@@ -1,0 +1,3983 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>HD현대마린솔루션테크 — 고객 웹 포털</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;600;700;800;900&family=Outfit:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --hd-red: #e4002b;
+        --hd-red-dark: #c20024;
+        --hd-navy: #1a2236;
+        --hd-navy-light: #243050;
+        --hd-blue: #0066b3;
+        --hd-blue-light: #e8f2fb;
+        --hd-dark: #1c1c1c;
+        --hd-gray-900: #2d2d2d;
+        --hd-gray-700: #555;
+        --hd-gray-500: #888;
+        --hd-gray-300: #bbb;
+        --hd-gray-200: #d9d9d9;
+        --hd-gray-100: #efefef;
+        --hd-gray-50: #f7f7f7;
+        --hd-white: #ffffff;
+        --hd-green: #00875a;
+        --hd-orange: #e67e22;
+        --hd-danger: #d63031;
+        --radius: 6px;
+        --radius-lg: 10px;
+        --shadow-sm: 0 1px 3px rgba(0, 0, 0, 0.06);
+        --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.08);
+        --shadow-lg: 0 8px 32px rgba(0, 0, 0, 0.12);
+        --header-h: 72px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: 'Noto Sans KR', 'Outfit', sans-serif;
+        background: #f3f4f6;
+        color: var(--hd-dark);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      /* ═══════ HEADER ═══════ */
+      .hd-header {
+        position: sticky;
+        top: 0;
+        z-index: 200;
+        height: var(--header-h);
+        background: var(--hd-white);
+        border-bottom: 1px solid var(--hd-gray-200);
+        box-shadow: var(--shadow-sm);
+        display: flex;
+        align-items: center;
+        padding: 0 40px;
+      }
+      .hd-header .logo-area {
+        display: flex;
+        align-items: center;
+        gap: 14px;
+        flex-shrink: 0;
+      }
+      .hd-header .logo-mark {
+        width: 44px;
+        height: 44px;
+        background: var(--hd-red);
+        border-radius: 6px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 800;
+        font-size: 13px;
+        letter-spacing: -0.5px;
+        line-height: 1.1;
+        text-align: center;
+      }
+      .hd-header .logo-text {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--hd-navy);
+        line-height: 1.3;
+      }
+      .hd-header .logo-text span {
+        display: block;
+        font-size: 11px;
+        font-weight: 400;
+        color: var(--hd-gray-500);
+        letter-spacing: 0.5px;
+      }
+      .hd-header .header-right {
+        margin-left: auto;
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+      .hd-header .lang-toggle {
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--hd-gray-500);
+        cursor: pointer;
+        display: flex;
+        gap: 4px;
+      }
+      .hd-header .lang-toggle .active-lang {
+        color: var(--hd-dark);
+        font-weight: 700;
+      }
+      .hd-header .bell-wrap {
+        position: relative;
+        cursor: pointer;
+        color: var(--hd-gray-700);
+      }
+      .hd-header .bell-wrap .noti-count {
+        position: absolute;
+        top: -4px;
+        right: -6px;
+        background: var(--hd-red);
+        color: #fff;
+        font-size: 10px;
+        font-weight: 700;
+        width: 16px;
+        height: 16px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .hd-header .user-pill {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 6px 14px 6px 8px;
+        background: var(--hd-gray-50);
+        border: 1px solid var(--hd-gray-200);
+        border-radius: 20px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 500;
+      }
+      .hd-header .user-avatar {
+        width: 28px;
+        height: 28px;
+        border-radius: 50%;
+        background: var(--hd-navy);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      /* ═══════ SUB-HEADER / TAB NAV ═══════ */
+      .tab-nav-wrap {
+        background: var(--hd-white);
+        border-bottom: 2px solid var(--hd-gray-200);
+        padding: 0 40px;
+        position: relative;
+        z-index: 50;
+      }
+      .tab-nav {
+        display: flex;
+        gap: 0;
+        min-width: max-content;
+      }
+      .tab-nav .tab-item {
+        padding: 14px 20px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--hd-gray-700);
+        cursor: pointer;
+        border-bottom: 3px solid transparent;
+        margin-bottom: -2px;
+        white-space: nowrap;
+        transition: all 0.2s;
+        position: relative;
+        background: none;
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        font-family: inherit;
+      }
+      .tab-nav .tab-item:hover {
+        color: var(--hd-dark);
+        background: var(--hd-gray-50);
+      }
+      .tab-nav .tab-item.active {
+        color: var(--hd-red);
+        font-weight: 700;
+        border-bottom-color: var(--hd-red);
+      }
+      /* Tab dropdown */
+      .tab-dropdown {
+        position: relative;
+        display: flex;
+        align-items: stretch;
+      }
+      .tab-dropdown-menu {
+        display: none;
+        position: absolute;
+        top: calc(100% + 2px);
+        left: 0;
+        z-index: 999;
+        background: var(--hd-white);
+        border: 1px solid var(--hd-gray-200);
+        border-radius: 0 0 6px 6px;
+        box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+        min-width: 200px;
+      }
+      .tab-dropdown:hover .tab-dropdown-menu {
+        display: block;
+      }
+      .tab-dd-item {
+        display: block;
+        width: 100%;
+        padding: 11px 18px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--hd-gray-700);
+        background: none;
+        border: none;
+        text-align: left;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.12s;
+      }
+      .tab-dd-item:hover {
+        background: var(--hd-navy);
+        color: #fff;
+      }
+      .tab-dd-item:not(:last-child) {
+        border-bottom: 1px solid var(--hd-gray-100);
+      }
+
+      .tab-nav .tab-login {
+        margin-left: auto;
+        padding: 8px 24px;
+        background: var(--hd-navy);
+        color: #fff;
+        border: none;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: 600;
+        cursor: pointer;
+        align-self: center;
+        margin-bottom: 0;
+        font-family: inherit;
+        transition: background 0.2s;
+      }
+      .tab-nav .tab-login:hover {
+        background: var(--hd-navy-light);
+      }
+
+      /* ═══════ MAIN CONTENT ═══════ */
+      .main-body {
+        max-width: 1360px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 28px 40px 80px;
+        flex: 1;
+      }
+
+      /* Tab Panels */
+      .panel {
+        display: none;
+        animation: panelIn 0.3s ease;
+      }
+      .panel.active {
+        display: block;
+      }
+      @keyframes panelIn {
+        from {
+          opacity: 0;
+          transform: translateY(8px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      /* ═══════ COMMON CARD ═══════ */
+      .card {
+        background: var(--hd-white);
+        border: 1px solid var(--hd-gray-200);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-sm);
+        margin-bottom: 20px;
+        overflow: hidden;
+      }
+      .card-header {
+        padding: 18px 24px;
+        border-bottom: 1px solid var(--hd-gray-100);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .card-header h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--hd-navy);
+      }
+      .card-header .badge-count {
+        font-size: 11px;
+        font-weight: 700;
+        background: var(--hd-red);
+        color: #fff;
+        padding: 2px 8px;
+        border-radius: 10px;
+      }
+      .card-body {
+        padding: 20px 24px;
+      }
+
+      /* ═══════ PAGE TITLE ═══════ */
+      .page-title-bar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: 24px;
+      }
+      .page-title-bar h2 {
+        font-size: 22px;
+        font-weight: 800;
+        color: var(--hd-navy);
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+      .page-title-bar h2 .accent-bar {
+        width: 4px;
+        height: 24px;
+        background: var(--hd-red);
+        border-radius: 2px;
+      }
+      .page-title-bar .breadcrumb {
+        font-size: 12px;
+        color: var(--hd-gray-500);
+      }
+      .page-title-bar .breadcrumb strong {
+        color: var(--hd-dark);
+      }
+
+      /* ═══════ DATA TABLE ═══════ */
+      .dt-wrap {
+        overflow-x: auto;
+      }
+      .dt {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      .dt thead th {
+        background: var(--hd-navy);
+        color: #fff;
+        font-weight: 600;
+        text-align: left;
+        padding: 12px 16px;
+        font-size: 12px;
+        letter-spacing: 0.3px;
+      }
+      .dt thead th:first-child {
+        border-radius: var(--radius) 0 0 0;
+      }
+      .dt thead th:last-child {
+        border-radius: 0 var(--radius) 0 0;
+      }
+      .dt tbody td {
+        padding: 11px 16px;
+        border-bottom: 1px solid var(--hd-gray-100);
+        vertical-align: middle;
+      }
+      .dt tbody tr:hover {
+        background: var(--hd-blue-light);
+      }
+      .dt .td-label {
+        font-weight: 600;
+        color: var(--hd-navy);
+      }
+      .dt .btn-view {
+        padding: 4px 12px;
+        font-size: 11px;
+        font-weight: 600;
+        background: var(--hd-white);
+        border: 1px solid var(--hd-blue);
+        color: var(--hd-blue);
+        border-radius: 4px;
+        cursor: pointer;
+        transition: all 0.15s;
+        font-family: inherit;
+        white-space: nowrap;
+        flex-shrink: 0;
+      }
+      .dt .btn-view:hover {
+        background: var(--hd-blue);
+        color: #fff;
+      }
+
+      /* ═══════ SEARCH BAR ═══════ */
+      .search-bar {
+        display: flex;
+        gap: 12px;
+        align-items: flex-end;
+        margin-bottom: 16px;
+        flex-wrap: wrap;
+      }
+      .search-field {
+        display: flex;
+        flex-direction: column;
+        gap: 4px;
+      }
+      .search-field label {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--hd-gray-500);
+        letter-spacing: 0.3px;
+      }
+      .search-field select,
+      .search-field input[type='text'] {
+        padding: 8px 12px;
+        border: 1px solid var(--hd-gray-200);
+        border-radius: 4px;
+        font-size: 13px;
+        font-family: inherit;
+        outline: none;
+        transition: border 0.15s;
+        background: var(--hd-white);
+        min-width: 200px;
+      }
+      .search-field select:focus,
+      .search-field input[type='text']:focus {
+        border-color: var(--hd-blue);
+      }
+
+      /* ═══════ MODAL ═══════ */
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.45);
+        z-index: 500;
+        justify-content: center;
+        align-items: center;
+        padding: 24px;
+      }
+      .modal-overlay.open {
+        display: flex;
+      }
+      .modal-box {
+        background: var(--hd-white);
+        border-radius: var(--radius-lg);
+        box-shadow: var(--shadow-lg);
+        width: 100%;
+        max-width: 900px;
+        max-height: 85vh;
+        overflow-y: auto;
+        animation: modalIn 0.25s ease;
+      }
+      @keyframes modalIn {
+        from {
+          opacity: 0;
+          transform: translateY(16px) scale(0.97);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0) scale(1);
+        }
+      }
+      .modal-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 18px 24px;
+        border-bottom: 1px solid var(--hd-gray-100);
+        position: sticky;
+        top: 0;
+        background: var(--hd-white);
+        border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+        z-index: 1;
+      }
+      .modal-header h3 {
+        font-size: 16px;
+        font-weight: 700;
+        color: var(--hd-navy);
+      }
+      .modal-close {
+        width: 32px;
+        height: 32px;
+        border: none;
+        background: var(--hd-gray-50);
+        border-radius: 6px;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--hd-gray-700);
+        font-size: 18px;
+        font-family: inherit;
+        transition: background 0.15s;
+      }
+      .modal-close:hover {
+        background: var(--hd-gray-100);
+      }
+      .modal-body {
+        padding: 20px 24px 28px;
+      }
+
+      /* ═══════ STATUS BADGES ═══════ */
+      .sts {
+        display: inline-flex;
+        align-items: center;
+        gap: 4px;
+        padding: 3px 10px;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 600;
+      }
+      .sts-ok {
+        background: #e6f7f0;
+        color: var(--hd-green);
+      }
+      .sts-warn {
+        background: #fef5e7;
+        color: var(--hd-orange);
+      }
+      .sts-danger {
+        background: #fdeaea;
+        color: var(--hd-danger);
+      }
+      .sts-info {
+        background: var(--hd-blue-light);
+        color: var(--hd-blue);
+      }
+      .sts-navy {
+        background: rgba(26, 34, 54, 0.08);
+        color: var(--hd-navy);
+      }
+
+      /* ═══════ STEP PIPELINE ═══════ */
+      .pipeline {
+        display: flex;
+        align-items: center;
+        gap: 0;
+        margin: 16px 0;
+      }
+      .pipe-node {
+        flex: 1;
+        text-align: center;
+        padding: 10px 8px;
+        font-size: 12px;
+        font-weight: 500;
+        background: var(--hd-gray-50);
+        border: 1px solid var(--hd-gray-200);
+        color: var(--hd-gray-500);
+        position: relative;
+      }
+      .pipe-node:first-child {
+        border-radius: 6px 0 0 6px;
+      }
+      .pipe-node:last-child {
+        border-radius: 0 6px 6px 0;
+      }
+      .pipe-node:not(:first-child) {
+        border-left: none;
+      }
+      .pipe-node.done {
+        background: #e6f7f0;
+        border-color: #b8e6d0;
+        color: var(--hd-green);
+        font-weight: 600;
+      }
+      .pipe-node.current {
+        background: var(--hd-red);
+        border-color: var(--hd-red);
+        color: #fff;
+        font-weight: 700;
+      }
+
+      /* ═══════ GRID ═══════ */
+      .g2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 20px;
+      }
+      .g3 {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        gap: 16px;
+      }
+      .g4 {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 16px;
+      }
+
+      /* ═══════ STAT CARD ═══════ */
+      .stat-card {
+        background: var(--hd-white);
+        border: 1px solid var(--hd-gray-200);
+        border-radius: var(--radius-lg);
+        padding: 20px;
+        text-align: center;
+        box-shadow: var(--shadow-sm);
+      }
+      .stat-card .stat-val {
+        font-family: 'Outfit', sans-serif;
+        font-size: 32px;
+        font-weight: 800;
+        margin: 8px 0 4px;
+      }
+      .stat-card .stat-label {
+        font-size: 12px;
+        color: var(--hd-gray-500);
+        font-weight: 500;
+      }
+
+      /* ═══════ GAUGE ═══════ */
+      .gauge-box {
+        display: flex;
+        align-items: center;
+        gap: 28px;
+        padding: 16px 0;
+      }
+      .gauge-ring {
+        width: 130px;
+        height: 130px;
+        border-radius: 50%;
+        background: conic-gradient(
+          var(--hd-green) 0% var(--gauge-pct, 78%),
+          var(--hd-gray-100) var(--gauge-pct, 78%) 100%
+        );
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        position: relative;
+      }
+      .gauge-ring::after {
+        content: '';
+        width: 96px;
+        height: 96px;
+        border-radius: 50%;
+        background: var(--hd-white);
+        position: absolute;
+      }
+      .gauge-ring .g-val {
+        position: relative;
+        z-index: 1;
+        font-family: 'Outfit', sans-serif;
+        font-size: 30px;
+        font-weight: 800;
+        color: var(--hd-green);
+      }
+
+      /* ═══════ PROGRESS BAR ═══════ */
+      .prog-row {
+        margin-bottom: 14px;
+      }
+      .prog-row .prog-label {
+        display: flex;
+        justify-content: space-between;
+        font-size: 13px;
+        margin-bottom: 5px;
+      }
+      .prog-row .prog-label .pct {
+        font-weight: 700;
+        font-family: 'Outfit', sans-serif;
+      }
+      .prog-track {
+        height: 10px;
+        background: var(--hd-gray-100);
+        border-radius: 5px;
+        overflow: hidden;
+      }
+      .prog-fill {
+        height: 100%;
+        border-radius: 5px;
+        transition: width 0.4s ease;
+      }
+
+      /* ═══════ TIMELINE ═══════ */
+      .timeline {
+        position: relative;
+        padding-left: 28px;
+      }
+      .timeline::before {
+        content: '';
+        position: absolute;
+        left: 8px;
+        top: 4px;
+        bottom: 4px;
+        width: 2px;
+        background: var(--hd-gray-200);
+      }
+      .tl-item {
+        position: relative;
+        padding: 0 0 20px 16px;
+      }
+      .tl-item::before {
+        content: '';
+        position: absolute;
+        left: -24px;
+        top: 4px;
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        border: 2px solid var(--hd-gray-200);
+        background: var(--hd-white);
+      }
+      .tl-item.tl-green::before {
+        border-color: var(--hd-green);
+        background: var(--hd-green);
+      }
+      .tl-item.tl-orange::before {
+        border-color: var(--hd-orange);
+        background: var(--hd-orange);
+      }
+      .tl-item.tl-blue::before {
+        border-color: var(--hd-blue);
+        background: var(--hd-blue);
+      }
+      .tl-item .tl-date {
+        font-size: 11px;
+        color: var(--hd-gray-500);
+        font-family: 'Outfit', sans-serif;
+        font-weight: 500;
+        margin-bottom: 3px;
+      }
+      .tl-item .tl-body {
+        font-size: 13px;
+      }
+
+      /* ═══════ PROPOSAL CARD (Part 2) ═══════ */
+      .proposal {
+        background: var(--hd-white);
+        border: 1px solid var(--hd-gray-200);
+        border-radius: var(--radius-lg);
+        overflow: hidden;
+        margin-bottom: 20px;
+        box-shadow: var(--shadow-sm);
+      }
+      .proposal .prop-head {
+        padding: 16px 24px;
+        background: var(--hd-navy);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        gap: 12px;
+      }
+      .proposal .prop-head h3 {
+        font-size: 15px;
+        font-weight: 700;
+      }
+      .proposal .prop-head .prop-tag {
+        font-size: 10px;
+        font-weight: 600;
+        padding: 3px 8px;
+        border-radius: 3px;
+        background: rgba(255, 255, 255, 0.15);
+      }
+      .proposal .prop-body {
+        padding: 20px 24px;
+      }
+      .proposal .prop-body .row-title {
+        font-size: 11px;
+        font-weight: 700;
+        color: var(--hd-red);
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin: 14px 0 6px;
+      }
+      .proposal .prop-body .row-title:first-child {
+        margin-top: 0;
+      }
+      .proposal .prop-body ul {
+        padding-left: 18px;
+      }
+      .proposal .prop-body li {
+        font-size: 13px;
+        line-height: 1.8;
+        color: var(--hd-gray-700);
+      }
+
+      /* ═══════ PRIORITY TABLE ═══════ */
+      .prio-table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 13px;
+      }
+      .prio-table thead th {
+        background: var(--hd-gray-50);
+        border-bottom: 2px solid var(--hd-gray-200);
+        padding: 10px 14px;
+        font-size: 12px;
+        font-weight: 600;
+        color: var(--hd-gray-700);
+        text-align: left;
+      }
+      .prio-table tbody td {
+        padding: 12px 14px;
+        border-bottom: 1px solid var(--hd-gray-100);
+      }
+      .prio-table .rank-star {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        background: var(--hd-red);
+        color: #fff;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 800;
+        font-size: 13px;
+      }
+      .prio-table .rank-num {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 28px;
+        height: 28px;
+        border-radius: 6px;
+        background: var(--hd-gray-100);
+        color: var(--hd-gray-700);
+        font-family: 'Outfit', sans-serif;
+        font-weight: 700;
+        font-size: 13px;
+      }
+
+      /* ═══════ NOTIF LIST ═══════ */
+      .noti-item {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 12px 16px;
+        border-bottom: 1px solid var(--hd-gray-100);
+        font-size: 13px;
+        transition: background 0.15s;
+      }
+      .noti-item:last-child {
+        border-bottom: none;
+      }
+      .noti-item:hover {
+        background: var(--hd-gray-50);
+      }
+
+      /* ═══════ STEP CARDS ═══════ */
+      .step-cards {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+        margin-bottom: 16px;
+      }
+      .step-c {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 8px 14px;
+        border: 1px solid var(--hd-gray-200);
+        border-radius: 6px;
+        font-size: 12px;
+        background: var(--hd-white);
+      }
+      .step-c .s-num {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        background: var(--hd-red);
+        color: #fff;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: 'Outfit', sans-serif;
+        font-weight: 700;
+        font-size: 11px;
+        flex-shrink: 0;
+      }
+      .step-arrow-r {
+        color: var(--hd-gray-300);
+      }
+
+      /* ═══════ SUB-TAB ═══════ */
+      .sub-tab {
+        padding: 12px 24px;
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--hd-gray-700);
+        background: none;
+        border: none;
+        border-bottom: 3px solid transparent;
+        margin-bottom: -2px;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.2s;
+      }
+      .sub-tab:hover {
+        color: var(--hd-dark);
+        background: var(--hd-gray-50);
+      }
+      .sub-tab.active {
+        color: var(--hd-red);
+        font-weight: 700;
+        border-bottom-color: var(--hd-red);
+      }
+      .sub-panel {
+        display: none;
+        animation: panelIn 0.25s ease;
+      }
+      .sub-panel.active {
+        display: block;
+      }
+
+      /* ═══════ SERVICE REQUEST FORM ═══════ */
+      .sr-steps {
+        display: flex;
+        gap: 0;
+        margin-bottom: 24px;
+        border-bottom: 2px solid var(--hd-gray-100);
+        overflow-x: auto;
+        scrollbar-width: none;
+      }
+      .sr-steps::-webkit-scrollbar {
+        display: none;
+      }
+      .sr-step {
+        flex: 1;
+        min-width: 0;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 12px 10px;
+        font-size: 12px;
+        font-weight: 500;
+        color: var(--hd-gray-500);
+        white-space: nowrap;
+        border-bottom: 3px solid transparent;
+        margin-bottom: -2px;
+        transition: all 0.2s;
+        cursor: default;
+      }
+      .sr-step.active {
+        color: var(--hd-red);
+        border-bottom-color: var(--hd-red);
+        font-weight: 700;
+      }
+      .sr-step.done {
+        color: var(--hd-green);
+      }
+      .sr-dot {
+        width: 22px;
+        height: 22px;
+        border-radius: 50%;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 11px;
+        font-weight: 700;
+        background: var(--hd-gray-100);
+        color: var(--hd-gray-500);
+        flex-shrink: 0;
+        font-family: 'Outfit', sans-serif;
+        transition: all 0.2s;
+      }
+      .sr-step.active .sr-dot {
+        background: var(--hd-red);
+        color: #fff;
+      }
+      .sr-step.done .sr-dot {
+        background: var(--hd-green);
+        color: #fff;
+      }
+
+      .sr-pane {
+        display: none;
+        animation: panelIn 0.25s ease;
+      }
+      .sr-pane.active {
+        display: block;
+      }
+
+      .sr-pane-title {
+        font-size: 15px;
+        font-weight: 700;
+        color: var(--hd-navy);
+        margin-bottom: 16px;
+      }
+      .sr-input {
+        padding: 10px 14px;
+        border: 1px solid var(--hd-gray-200);
+        border-radius: 6px;
+        font-size: 14px;
+        font-family: inherit;
+        width: 100%;
+        max-width: 400px;
+        outline: none;
+        background: var(--hd-white);
+        transition: border 0.15s;
+      }
+      .sr-input:focus {
+        border-color: var(--hd-blue);
+      }
+      .sr-textarea {
+        padding: 12px 14px;
+        border: 1px solid var(--hd-gray-200);
+        border-radius: 6px;
+        font-size: 13px;
+        font-family: inherit;
+        width: 100%;
+        outline: none;
+        resize: vertical;
+        transition: border 0.15s;
+        line-height: 1.7;
+      }
+      .sr-textarea:focus {
+        border-color: var(--hd-blue);
+      }
+
+      .sr-radio-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .sr-radio {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 18px;
+        border: 1px solid var(--hd-gray-200);
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 500;
+        transition: all 0.15s;
+      }
+      .sr-radio:hover {
+        border-color: var(--hd-blue);
+        background: var(--hd-blue-light);
+      }
+      .sr-radio:has(input:checked) {
+        border-color: var(--hd-blue);
+        background: var(--hd-blue-light);
+        color: var(--hd-blue);
+        font-weight: 600;
+      }
+      .sr-radio-danger:has(input:checked) {
+        border-color: var(--hd-danger);
+        background: #fdeaea;
+        color: var(--hd-danger);
+      }
+      .sr-radio input {
+        accent-color: var(--hd-blue);
+      }
+
+      .sr-check-group {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+      }
+      .sr-check {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 10px 16px;
+        border: 1px solid var(--hd-gray-200);
+        border-radius: 8px;
+        cursor: pointer;
+        font-size: 13px;
+        transition: all 0.15s;
+      }
+      .sr-check:hover {
+        border-color: var(--hd-blue);
+        background: var(--hd-blue-light);
+      }
+      .sr-check:has(input:checked) {
+        border-color: var(--hd-blue);
+        background: var(--hd-blue-light);
+        font-weight: 600;
+      }
+      .sr-check input {
+        accent-color: var(--hd-blue);
+      }
+
+      .sr-dropzone {
+        border: 2px dashed var(--hd-gray-200);
+        border-radius: 10px;
+        padding: 32px;
+        text-align: center;
+        cursor: pointer;
+        transition: all 0.15s;
+        color: var(--hd-gray-500);
+      }
+      .sr-dropzone p {
+        font-size: 13px;
+        margin-top: 8px;
+        line-height: 1.6;
+      }
+      .sr-dropzone:hover {
+        border-color: var(--hd-blue);
+        background: var(--hd-blue-light);
+      }
+      .sr-dropzone.dragover {
+        border-color: var(--hd-blue);
+        background: var(--hd-blue-light);
+      }
+      .sr-file-list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-top: 10px;
+      }
+      .sr-file-tag {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 5px 12px;
+        background: var(--hd-gray-50);
+        border: 1px solid var(--hd-gray-200);
+        border-radius: 6px;
+        font-size: 12px;
+      }
+      .sr-file-tag .sr-file-x {
+        cursor: pointer;
+        color: var(--hd-gray-500);
+        font-weight: 700;
+        font-size: 14px;
+      }
+      .sr-file-tag .sr-file-x:hover {
+        color: var(--hd-danger);
+      }
+
+      .sr-nav {
+        display: flex;
+        gap: 8px;
+        justify-content: flex-end;
+        margin-top: 24px;
+        padding-top: 16px;
+        border-top: 1px solid var(--hd-gray-100);
+      }
+      .sr-btn {
+        padding: 10px 28px;
+        border-radius: 6px;
+        font-size: 13px;
+        font-weight: 600;
+        cursor: pointer;
+        font-family: inherit;
+        transition: all 0.15s;
+        border: none;
+      }
+      .sr-btn:disabled {
+        opacity: 0.4;
+        cursor: default;
+      }
+      .sr-btn-ghost {
+        background: var(--hd-white);
+        border: 1px solid var(--hd-gray-200);
+        color: var(--hd-gray-700);
+      }
+      .sr-btn-ghost:hover:not(:disabled) {
+        background: var(--hd-gray-50);
+      }
+      .sr-btn-primary {
+        background: var(--hd-blue);
+        color: #fff;
+      }
+      .sr-btn-primary:hover {
+        background: #005a9e;
+      }
+      .sr-btn-submit {
+        background: var(--hd-red);
+        color: #fff;
+      }
+      .sr-btn-submit:hover {
+        background: var(--hd-red-dark);
+      }
+
+      .sr-summary {
+        margin-top: 20px;
+        padding: 16px 20px;
+        background: var(--hd-gray-50);
+        border: 1px solid var(--hd-gray-200);
+        border-radius: 8px;
+      }
+      .sr-summary h5 {
+        font-size: 13px;
+        font-weight: 700;
+        color: var(--hd-navy);
+        margin-bottom: 12px;
+      }
+      .sr-summary-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 10px;
+      }
+      .sr-summary-grid > div {
+        display: flex;
+        flex-direction: column;
+        gap: 2px;
+      }
+      .sr-sum-label {
+        font-size: 11px;
+        font-weight: 600;
+        color: var(--hd-gray-500);
+        text-transform: uppercase;
+        letter-spacing: 0.3px;
+      }
+      .sr-summary-grid span:not(.sr-sum-label) {
+        font-size: 13px;
+        font-weight: 500;
+        color: var(--hd-dark);
+      }
+
+      /* ═══════ RESPONSIVE ═══════ */
+      @media (max-width: 960px) {
+        .g2,
+        .g3,
+        .g4 {
+          grid-template-columns: 1fr;
+        }
+        .hd-header {
+          padding: 0 16px;
+        }
+        .tab-nav-wrap {
+          padding: 0 16px;
+        }
+        .main-body {
+          padding: 20px 16px 60px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- ═══════ HEADER ═══════ -->
+    <header class="hd-header">
+      <div class="logo-area">
+        <div class="logo-mark">HD</div>
+        <div class="logo-text">
+          HD현대마린솔루션테크
+          <span>Marine Solution Tech</span>
+        </div>
+      </div>
+      <div class="header-right">
+        <div class="lang-toggle">
+          <span class="active-lang">KR</span>
+          <span>|</span>
+          <span>EN</span>
+        </div>
+        <div class="bell-wrap">
+          <svg
+            width="20"
+            height="20"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            viewBox="0 0 24 24"
+          >
+            <path d="M18 8A6 6 0 006 8c0 7-3 9-3 9h18s-3-2-3-9" />
+            <path d="M13.73 21a2 2 0 01-3.46 0" />
+          </svg>
+          <div class="noti-count">3</div>
+        </div>
+        <div class="user-pill">
+          <div class="user-avatar">PM</div>
+          신채린
+        </div>
+      </div>
+    </header>
+
+    <!-- ═══════ TAB NAVIGATION ═══════ -->
+    <div class="tab-nav-wrap">
+      <div class="tab-nav" id="tabNav">
+        <button class="tab-item active" data-tab="p1">호선 정보 관리</button>
+        <div class="tab-dropdown">
+          <button class="tab-item" data-tab="p2">서비스 요청 및 추적</button>
+          <div class="tab-dropdown-menu">
+            <button class="tab-dd-item" onclick="goSub('p2', 'sub1')">
+              서비스 요청 작성
+            </button>
+            <button class="tab-dd-item" onclick="goSub('p2', 'sub2')">
+              서비스 추적 대시보드
+            </button>
+            <button class="tab-dd-item" onclick="goSub('p2', 'sub3')">
+              서비스 이력 조회
+            </button>
+          </div>
+        </div>
+        <button class="tab-item" data-tab="p3">점검/수리 이력</button>
+        <button class="tab-item" data-tab="p4">리포트 시각화 대시보드</button>
+        <button class="tab-item" data-tab="p5">기술 문서 라이브러리</button>
+        <button class="tab-item" data-tab="p6">알림/리마인더 시스템</button>
+        <button class="tab-item" data-tab="p7">소통 채널</button>
+        <button class="tab-item" data-tab="p8">관리자(PM) 전용 백오피스</button>
+        <button class="tab-item" data-tab="p9">격차 해소 방안</button>
+        <button class="tab-login">로그인</button>
+      </div>
+    </div>
+
+    <!-- ═══════ MAIN BODY ═══════ -->
+    <div class="main-body">
+      <!-- ╔══════════════════════════════════════╗ -->
+      <!-- ║  P1 — 호선 정보 관리                   ║ -->
+      <!-- ╚══════════════════════════════════════╝ -->
+      <div class="panel active" id="p1">
+        <div class="page-title-bar">
+          <h2><span class="accent-bar"></span>선박 목록</h2>
+          <div class="breadcrumb">
+            포털 &gt; <strong>호선 정보 관리</strong>
+          </div>
+        </div>
+
+        <div class="search-bar">
+          <div class="search-field">
+            <label>Vessel Name</label>
+            <select id="filterName">
+              <option value="">전체</option>
+              <option>HD Harmony</option>
+              <option>HD Pioneer</option>
+              <option>HD Frontier</option>
+              <option>HD Challenger</option>
+              <option>HD Navigator</option>
+              <option>HD Explorer</option>
+              <option>HD Voyager</option>
+              <option>HD Guardian</option>
+            </select>
+          </div>
+          <div class="search-field">
+            <label>Hull No.</label>
+            <input type="text" id="filterHull" placeholder="예: HHI-2301" />
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="dt-wrap">
+            <table class="dt" id="vesselTable">
+              <thead>
+                <tr>
+                  <th style="width: 50px">No.</th>
+                  <th>선박명</th>
+                  <th>Hull No.</th>
+                  <th>Type</th>
+                  <th>Built Year</th>
+                  <th style="width: 80px; text-align: center">Detail</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr data-name="HD Harmony" data-hull="HHI-2301">
+                  <td>1</td>
+                  <td class="td-label">HD Harmony</td>
+                  <td>HHI-2301</td>
+                  <td>VLCC</td>
+                  <td>2023</td>
+                  <td style="text-align: center">
+                    <button
+                      class="btn-view"
+                      onclick="
+                        openModal(
+                          'HD Harmony',
+                          'HHI-2301',
+                          'VLCC',
+                          '2023',
+                          '9901234',
+                        )
+                      "
+                    >
+                      조회
+                    </button>
+                  </td>
+                </tr>
+                <tr data-name="HD Pioneer" data-hull="HHI-2245">
+                  <td>2</td>
+                  <td class="td-label">HD Pioneer</td>
+                  <td>HHI-2245</td>
+                  <td>Bulk Carrier</td>
+                  <td>2022</td>
+                  <td style="text-align: center">
+                    <button
+                      class="btn-view"
+                      onclick="
+                        openModal(
+                          'HD Pioneer',
+                          'HHI-2245',
+                          'Bulk Carrier',
+                          '2022',
+                          '9876543',
+                        )
+                      "
+                    >
+                      조회
+                    </button>
+                  </td>
+                </tr>
+                <tr data-name="HD Frontier" data-hull="HHI-2189">
+                  <td>3</td>
+                  <td class="td-label">HD Frontier</td>
+                  <td>HHI-2189</td>
+                  <td>Container</td>
+                  <td>2021</td>
+                  <td style="text-align: center">
+                    <button
+                      class="btn-view"
+                      onclick="
+                        openModal(
+                          'HD Frontier',
+                          'HHI-2189',
+                          'Container',
+                          '2021',
+                          '9812345',
+                        )
+                      "
+                    >
+                      조회
+                    </button>
+                  </td>
+                </tr>
+                <tr data-name="HD Challenger" data-hull="HHI-2102">
+                  <td>4</td>
+                  <td class="td-label">HD Challenger</td>
+                  <td>HHI-2102</td>
+                  <td>LNG Carrier</td>
+                  <td>2021</td>
+                  <td style="text-align: center">
+                    <button
+                      class="btn-view"
+                      onclick="
+                        openModal(
+                          'HD Challenger',
+                          'HHI-2102',
+                          'LNG Carrier',
+                          '2021',
+                          '9798765',
+                        )
+                      "
+                    >
+                      조회
+                    </button>
+                  </td>
+                </tr>
+                <tr data-name="HD Navigator" data-hull="HHI-2056">
+                  <td>5</td>
+                  <td class="td-label">HD Navigator</td>
+                  <td>HHI-2056</td>
+                  <td>VLCC</td>
+                  <td>2020</td>
+                  <td style="text-align: center">
+                    <button
+                      class="btn-view"
+                      onclick="
+                        openModal(
+                          'HD Navigator',
+                          'HHI-2056',
+                          'VLCC',
+                          '2020',
+                          '9745678',
+                        )
+                      "
+                    >
+                      조회
+                    </button>
+                  </td>
+                </tr>
+                <tr data-name="HD Explorer" data-hull="HHI-1998">
+                  <td>6</td>
+                  <td class="td-label">HD Explorer</td>
+                  <td>HHI-1998</td>
+                  <td>Bulk Carrier</td>
+                  <td>2019</td>
+                  <td style="text-align: center">
+                    <button
+                      class="btn-view"
+                      onclick="
+                        openModal(
+                          'HD Explorer',
+                          'HHI-1998',
+                          'Bulk Carrier',
+                          '2019',
+                          '9698765',
+                        )
+                      "
+                    >
+                      조회
+                    </button>
+                  </td>
+                </tr>
+                <tr data-name="HD Voyager" data-hull="HHI-1944">
+                  <td>7</td>
+                  <td class="td-label">HD Voyager</td>
+                  <td>HHI-1944</td>
+                  <td>Container</td>
+                  <td>2019</td>
+                  <td style="text-align: center">
+                    <button
+                      class="btn-view"
+                      onclick="
+                        openModal(
+                          'HD Voyager',
+                          'HHI-1944',
+                          'Container',
+                          '2019',
+                          '9654321',
+                        )
+                      "
+                    >
+                      조회
+                    </button>
+                  </td>
+                </tr>
+                <tr data-name="HD Guardian" data-hull="HHI-1887">
+                  <td>8</td>
+                  <td class="td-label">HD Guardian</td>
+                  <td>HHI-1887</td>
+                  <td>LNG Carrier</td>
+                  <td>2018</td>
+                  <td style="text-align: center">
+                    <button
+                      class="btn-view"
+                      onclick="
+                        openModal(
+                          'HD Guardian',
+                          'HHI-1887',
+                          'LNG Carrier',
+                          '2018',
+                          '9612345',
+                        )
+                      "
+                    >
+                      조회
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════ VESSEL DETAIL MODAL ═══════ -->
+      <div class="modal-overlay" id="vesselModal">
+        <div class="modal-box">
+          <div class="modal-header">
+            <h3 id="modalTitle">Vessel Detail</h3>
+            <button class="modal-close" onclick="closeModal()">&times;</button>
+          </div>
+          <div class="modal-body">
+            <div class="g2">
+              <div>
+                <table class="dt">
+                  <thead>
+                    <tr>
+                      <th colspan="2">General Info</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="td-label">Vessel Name</td>
+                      <td id="mdName">—</td>
+                    </tr>
+                    <tr>
+                      <td class="td-label">IMO</td>
+                      <td id="mdIMO">—</td>
+                    </tr>
+                    <tr>
+                      <td class="td-label">Hull No.</td>
+                      <td id="mdHull">—</td>
+                    </tr>
+                    <tr>
+                      <td class="td-label">Type</td>
+                      <td id="mdType">—</td>
+                    </tr>
+                    <tr>
+                      <td class="td-label">Built Year</td>
+                      <td id="mdYear">—</td>
+                    </tr>
+                    <tr>
+                      <td class="td-label">Shipyard</td>
+                      <td>현대중공업 울산</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+              <div>
+                <table class="dt">
+                  <thead>
+                    <tr>
+                      <th colspan="2">Switchboard Info</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td class="td-label">MSB #1</td>
+                      <td>HME-6600 / 6,600V</td>
+                    </tr>
+                    <tr>
+                      <td class="td-label">MSB #2</td>
+                      <td>HME-6600 / 6,600V</td>
+                    </tr>
+                    <tr>
+                      <td class="td-label">ESB</td>
+                      <td>HME-450 / 450V</td>
+                    </tr>
+                    <tr>
+                      <td class="td-label">DB #1~4</td>
+                      <td>HME-220 / 220V</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <div style="margin-top: 16px">
+              <table class="dt">
+                <thead>
+                  <tr>
+                    <th>Equipment</th>
+                    <th>Model</th>
+                    <th>Installed</th>
+                    <th>Last Inspection</th>
+                    <th>Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="td-label">MSB #1 ACB</td>
+                    <td>ABB Emax2</td>
+                    <td>2022.06</td>
+                    <td>2025.11</td>
+                    <td><span class="sts sts-ok">정상</span></td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">MSB #2 ACB</td>
+                    <td>ABB Emax2</td>
+                    <td>2022.06</td>
+                    <td>2025.11</td>
+                    <td><span class="sts sts-warn">주의</span></td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">ESB MCCB</td>
+                    <td>LS SUSOL</td>
+                    <td>2022.06</td>
+                    <td>2025.11</td>
+                    <td><span class="sts sts-ok">정상</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ╔══════════════════════════════════════╗ -->
+      <!-- ║  P2 — 서비스 요청 및 추적              ║ -->
+      <!-- ╚══════════════════════════════════════╝ -->
+      <div class="panel" id="p2">
+        <!-- ── SUB1: 서비스 요청 작성 (flat) ── -->
+        <div class="sub-panel active" id="sub1">
+          <div class="page-title-bar">
+            <h2><span class="accent-bar"></span>New Service Request</h2>
+          </div>
+          <div class="card">
+            <div class="card-body">
+              <div class="sr-steps" id="srSteps">
+                <div class="sr-step active" data-s="1">
+                  <span class="sr-dot">1</span>선박
+                </div>
+                <div class="sr-step" data-s="2">
+                  <span class="sr-dot">2</span>유형
+                </div>
+                <div class="sr-step" data-s="3">
+                  <span class="sr-dot">3</span>설비
+                </div>
+                <div class="sr-step" data-s="4">
+                  <span class="sr-dot">4</span>내용
+                </div>
+                <div class="sr-step" data-s="5">
+                  <span class="sr-dot">5</span>첨부
+                </div>
+                <div class="sr-step" data-s="6">
+                  <span class="sr-dot">6</span>일정
+                </div>
+                <div class="sr-step" data-s="7">
+                  <span class="sr-dot">7</span>제출
+                </div>
+              </div>
+
+              <div class="sr-pane active" id="srPane1">
+                <h4 class="sr-pane-title">선박을 선택하세요</h4>
+                <select class="sr-input" id="srVessel">
+                  <option value="">— 선택 —</option>
+                  <option>HD Harmony (HHI-2301)</option>
+                  <option>HD Pioneer (HHI-2245)</option>
+                  <option>HD Frontier (HHI-2189)</option>
+                  <option>HD Challenger (HHI-2102)</option>
+                  <option>HD Navigator (HHI-2056)</option>
+                  <option>HD Explorer (HHI-1998)</option>
+                  <option>HD Voyager (HHI-1944)</option>
+                  <option>HD Guardian (HHI-1887)</option>
+                </select>
+              </div>
+              <div class="sr-pane" id="srPane2">
+                <h4 class="sr-pane-title">요청 유형을 선택하세요</h4>
+                <div class="sr-radio-group" id="srType">
+                  <label class="sr-radio"
+                    ><input type="radio" name="srType" value="기술 지원" /><span
+                      >기술 지원</span
+                    ></label
+                  >
+                  <label class="sr-radio"
+                    ><input
+                      type="radio"
+                      name="srType"
+                      value="헬스체크 요청"
+                    /><span>헬스체크 요청</span></label
+                  >
+                  <label class="sr-radio"
+                    ><input type="radio" name="srType" value="수리 요청" /><span
+                      >수리 요청</span
+                    ></label
+                  >
+                  <label class="sr-radio"
+                    ><input type="radio" name="srType" value="긴급 수리" /><span
+                      >긴급 수리</span
+                    ></label
+                  >
+                  <label class="sr-radio"
+                    ><input type="radio" name="srType" value="기타" /><span
+                      >기타</span
+                    ></label
+                  >
+                </div>
+              </div>
+              <div class="sr-pane" id="srPane3">
+                <h4 class="sr-pane-title">대상 설비를 선택하세요</h4>
+                <div class="sr-check-group" id="srEquip">
+                  <label class="sr-check"
+                    ><input type="checkbox" value="MSB #1" /><span
+                      >MSB #1</span
+                    ></label
+                  >
+                  <label class="sr-check"
+                    ><input type="checkbox" value="MSB #2" /><span
+                      >MSB #2</span
+                    ></label
+                  >
+                  <label class="sr-check"
+                    ><input type="checkbox" value="ESB" /><span
+                      >ESB</span
+                    ></label
+                  >
+                  <label class="sr-check"
+                    ><input type="checkbox" value="DB #1" /><span
+                      >DB #1</span
+                    ></label
+                  >
+                  <label class="sr-check"
+                    ><input type="checkbox" value="DB #2" /><span
+                      >DB #2</span
+                    ></label
+                  >
+                  <label class="sr-check"
+                    ><input type="checkbox" value="DB #3" /><span
+                      >DB #3</span
+                    ></label
+                  >
+                  <label class="sr-check"
+                    ><input type="checkbox" value="DB #4" /><span
+                      >DB #4</span
+                    ></label
+                  >
+                </div>
+              </div>
+              <div class="sr-pane" id="srPane4">
+                <h4 class="sr-pane-title">증상 및 요청 사항</h4>
+                <textarea
+                  class="sr-textarea"
+                  id="srDesc"
+                  rows="5"
+                  placeholder="예: MSB #2 ACB 투입 시 트립 반복 발생. 차단기 동작시간 측정 요청."
+                ></textarea>
+              </div>
+              <div class="sr-pane" id="srPane5">
+                <h4 class="sr-pane-title">파일 첨부</h4>
+                <div class="sr-dropzone" id="srDropzone">
+                  <svg
+                    width="32"
+                    height="32"
+                    fill="none"
+                    stroke="var(--hd-gray-300)"
+                    stroke-width="1.5"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+                    <polyline points="17 8 12 3 7 8" />
+                    <line x1="12" y1="3" x2="12" y2="15" />
+                  </svg>
+                  <p>
+                    사진, 동영상, 도면, 리포트 등<br />클릭하거나 드래그하세요
+                  </p>
+                  <input
+                    type="file"
+                    multiple
+                    style="display: none"
+                    id="srFile"
+                  />
+                </div>
+                <div class="sr-file-list" id="srFileList"></div>
+              </div>
+              <div class="sr-pane" id="srPane6">
+                <h4 class="sr-pane-title">희망 작업 일정</h4>
+                <div style="display: flex; gap: 16px; flex-wrap: wrap">
+                  <div class="search-field">
+                    <label>입거 예정일</label
+                    ><input type="date" class="sr-input" id="srDockDate" />
+                  </div>
+                  <div class="search-field">
+                    <label>희망 작업 시작일</label
+                    ><input type="date" class="sr-input" id="srWorkDate" />
+                  </div>
+                </div>
+                <textarea
+                  class="sr-textarea"
+                  id="srScheduleNote"
+                  rows="2"
+                  placeholder="참고 사항 (선택)"
+                  style="margin-top: 12px"
+                ></textarea>
+              </div>
+              <div class="sr-pane" id="srPane7">
+                <h4 class="sr-pane-title">긴급도 선택 및 최종 확인</h4>
+                <div
+                  class="sr-radio-group"
+                  id="srUrgency"
+                  style="margin-bottom: 16px"
+                >
+                  <label class="sr-radio"
+                    ><input
+                      type="radio"
+                      name="srUrg"
+                      value="일반"
+                      checked
+                    /><span>일반</span></label
+                  >
+                  <label class="sr-radio"
+                    ><input type="radio" name="srUrg" value="우선" /><span
+                      >우선</span
+                    ></label
+                  >
+                  <label class="sr-radio sr-radio-danger"
+                    ><input type="radio" name="srUrg" value="긴급" /><span
+                      >긴급</span
+                    ></label
+                  >
+                </div>
+                <div class="sr-summary" id="srSummary">
+                  <h5>요청 요약</h5>
+                  <div class="sr-summary-grid">
+                    <div>
+                      <span class="sr-sum-label">선박</span
+                      ><span id="sumVessel">—</span>
+                    </div>
+                    <div>
+                      <span class="sr-sum-label">요청 유형</span
+                      ><span id="sumType">—</span>
+                    </div>
+                    <div>
+                      <span class="sr-sum-label">대상 설비</span
+                      ><span id="sumEquip">—</span>
+                    </div>
+                    <div>
+                      <span class="sr-sum-label">희망 일정</span
+                      ><span id="sumDate">—</span>
+                    </div>
+                    <div>
+                      <span class="sr-sum-label">긴급도</span
+                      ><span id="sumUrg">—</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div class="sr-pane" id="srPaneDone">
+                <div style="text-align: center; padding: 40px 0">
+                  <div
+                    style="
+                      width: 56px;
+                      height: 56px;
+                      border-radius: 50%;
+                      background: #e6f7f0;
+                      display: inline-flex;
+                      align-items: center;
+                      justify-content: center;
+                      margin-bottom: 14px;
+                    "
+                  >
+                    <svg
+                      width="28"
+                      height="28"
+                      fill="none"
+                      stroke="var(--hd-green)"
+                      stroke-width="2.5"
+                      viewBox="0 0 24 24"
+                    >
+                      <polyline points="20 6 9 17 4 12" />
+                    </svg>
+                  </div>
+                  <h3
+                    style="
+                      font-size: 17px;
+                      color: var(--hd-navy);
+                      margin-bottom: 6px;
+                    "
+                  >
+                    서비스 요청이 접수되었습니다
+                  </h3>
+                  <p
+                    style="
+                      font-size: 13px;
+                      color: var(--hd-gray-500);
+                      line-height: 1.7;
+                    "
+                  >
+                    접수 확인 이메일이 발송됩니다.<br />담당 PM 배정 시 알림을
+                    드립니다.
+                  </p>
+                  <button
+                    class="sr-btn sr-btn-primary"
+                    onclick="srReset()"
+                    style="margin-top: 16px"
+                  >
+                    새 요청 작성
+                  </button>
+                </div>
+              </div>
+
+              <div class="sr-nav" id="srNav">
+                <button
+                  class="sr-btn sr-btn-ghost"
+                  id="srPrev"
+                  onclick="srGo(-1)"
+                  disabled
+                >
+                  이전
+                </button>
+                <button
+                  class="sr-btn sr-btn-primary"
+                  id="srNext"
+                  onclick="srGo(1)"
+                >
+                  다음
+                </button>
+                <button
+                  class="sr-btn sr-btn-submit"
+                  id="srSubmit"
+                  onclick="srSubmit()"
+                  style="display: none"
+                >
+                  제출하기
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SUB2: 서비스 추적 대시보드 ── -->
+        <div class="sub-panel" id="sub2">
+          <div class="page-title-bar">
+            <h2><span class="accent-bar"></span>서비스 추적 대시보드</h2>
+          </div>
+          <div class="search-bar" style="margin-bottom: 12px">
+            <div class="search-field">
+              <label>Vessel Name</label
+              ><select id="trackFilterName" onchange="filterTrack()">
+                <option value="">전체</option>
+                <option>HD Harmony</option>
+                <option>HD Pioneer</option>
+                <option>HD Frontier</option>
+                <option>HD Challenger</option>
+                <option>HD Navigator</option>
+                <option>HD Explorer</option>
+                <option>HD Voyager</option>
+                <option>HD Guardian</option>
+              </select>
+            </div>
+            <div class="search-field">
+              <label>Hull No.</label
+              ><input
+                type="text"
+                id="trackFilterHull"
+                placeholder="예: HHI-2301"
+                oninput="filterTrack()"
+              />
+            </div>
+          </div>
+          <div class="card">
+            <div class="dt-wrap">
+              <table class="dt" id="trackTable">
+                <thead>
+                  <tr>
+                    <th>Vessel Name</th>
+                    <th>Hull No.</th>
+                    <th>IMO</th>
+                    <th>Type</th>
+                    <th>Request</th>
+                    <th>Status</th>
+                    <th>접수일</th>
+                    <th>담당 PM</th>
+                    <th style="width: 70px; text-align: center"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-name="HD Harmony" data-hull="HHI-2301">
+                    <td class="td-label">HD Harmony</td>
+                    <td>HHI-2301</td>
+                    <td>9901234</td>
+                    <td>VLCC</td>
+                    <td>헬스체크</td>
+                    <td><span class="sts sts-navy">PM 배정</span></td>
+                    <td>2026.04.10</td>
+                    <td>이승호</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openTrackModal('HD Harmony', 'HHI-2301', 1)"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                  <tr data-name="HD Pioneer" data-hull="HHI-2245">
+                    <td class="td-label">HD Pioneer</td>
+                    <td>HHI-2245</td>
+                    <td>9876543</td>
+                    <td>Bulk Carrier</td>
+                    <td>수리 요청</td>
+                    <td><span class="sts sts-info">고객 승인 대기</span></td>
+                    <td>2026.03.20</td>
+                    <td>박정우</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openTrackModal('HD Pioneer', 'HHI-2245', 2)"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                  <tr data-name="HD Frontier" data-hull="HHI-2189">
+                    <td class="td-label">HD Frontier</td>
+                    <td>HHI-2189</td>
+                    <td>9812345</td>
+                    <td>Container</td>
+                    <td>기술 지원</td>
+                    <td><span class="sts sts-ok">완료</span></td>
+                    <td>2026.02.10</td>
+                    <td>이승호</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openTrackModal('HD Frontier', 'HHI-2189', 3)"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                  <tr data-name="HD Challenger" data-hull="HHI-2102">
+                    <td class="td-label">HD Challenger</td>
+                    <td>HHI-2102</td>
+                    <td>9798765</td>
+                    <td>LNG Carrier</td>
+                    <td>긴급 수리</td>
+                    <td><span class="sts sts-warn">공사 진행</span></td>
+                    <td>2026.04.01</td>
+                    <td>신채린</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openTrackModal('HD Challenger', 'HHI-2102', 4)"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                  <tr data-name="HD Navigator" data-hull="HHI-2056">
+                    <td class="td-label">HD Navigator</td>
+                    <td>HHI-2056</td>
+                    <td>9745678</td>
+                    <td>VLCC</td>
+                    <td>—</td>
+                    <td>
+                      <span class="sts sts-ok" style="opacity: 0.4">없음</span>
+                    </td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openTrackModal('HD Navigator', 'HHI-2056', 0)"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                  <tr data-name="HD Explorer" data-hull="HHI-1998">
+                    <td class="td-label">HD Explorer</td>
+                    <td>HHI-1998</td>
+                    <td>9698765</td>
+                    <td>Bulk Carrier</td>
+                    <td>—</td>
+                    <td>
+                      <span class="sts sts-ok" style="opacity: 0.4">없음</span>
+                    </td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openTrackModal('HD Explorer', 'HHI-1998', 0)"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                  <tr data-name="HD Voyager" data-hull="HHI-1944">
+                    <td class="td-label">HD Voyager</td>
+                    <td>HHI-1944</td>
+                    <td>9654321</td>
+                    <td>Container</td>
+                    <td>—</td>
+                    <td>
+                      <span class="sts sts-ok" style="opacity: 0.4">없음</span>
+                    </td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openTrackModal('HD Voyager', 'HHI-1944', 0)"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                  <tr data-name="HD Guardian" data-hull="HHI-1887">
+                    <td class="td-label">HD Guardian</td>
+                    <td>HHI-1887</td>
+                    <td>9612345</td>
+                    <td>LNG Carrier</td>
+                    <td>—</td>
+                    <td>
+                      <span class="sts sts-ok" style="opacity: 0.4">없음</span>
+                    </td>
+                    <td>—</td>
+                    <td>—</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openTrackModal('HD Guardian', 'HHI-1887', 0)"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── SUB3: 서비스 이력 조회 ── -->
+        <div class="sub-panel" id="sub3">
+          <div class="page-title-bar">
+            <h2><span class="accent-bar"></span>서비스 이력 조회</h2>
+          </div>
+          <div class="search-bar" style="margin-bottom: 12px">
+            <div class="search-field">
+              <label>Vessel Name</label
+              ><select id="histFilterName" onchange="filterHistory()">
+                <option value="">전체</option>
+                <option>HD Harmony</option>
+                <option>HD Pioneer</option>
+                <option>HD Frontier</option>
+                <option>HD Challenger</option>
+                <option>HD Navigator</option>
+                <option>HD Explorer</option>
+                <option>HD Voyager</option>
+                <option>HD Guardian</option>
+              </select>
+            </div>
+            <div class="search-field">
+              <label>Hull No.</label
+              ><input
+                type="text"
+                id="histFilterHull"
+                placeholder="예: HHI-2301"
+                oninput="filterHistory()"
+              />
+            </div>
+          </div>
+          <div class="card">
+            <div class="dt-wrap">
+              <table class="dt" id="historyTable">
+                <thead>
+                  <tr>
+                    <th>Vessel Name</th>
+                    <th>Hull No.</th>
+                    <th>IMO</th>
+                    <th>Vessel Type</th>
+                    <th>Service Type</th>
+                    <th>최근 서비스일</th>
+                    <th>건수</th>
+                    <th style="width: 70px; text-align: center"></th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr data-name="HD Harmony" data-hull="HHI-2301">
+                    <td class="td-label">HD Harmony</td>
+                    <td>HHI-2301</td>
+                    <td>9901234</td>
+                    <td>VLCC</td>
+                    <td><span class="sts sts-info">H/C</span></td>
+                    <td>2026.03.15</td>
+                    <td>3</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openHistModal('HD Harmony', 'H/C')"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                  <tr data-name="HD Pioneer" data-hull="HHI-2245">
+                    <td class="td-label">HD Pioneer</td>
+                    <td>HHI-2245</td>
+                    <td>9876543</td>
+                    <td>Bulk Carrier</td>
+                    <td><span class="sts sts-warn">RT</span></td>
+                    <td>2025.11.20</td>
+                    <td>5</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openHistModal('HD Pioneer', 'RT')"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                  <tr data-name="HD Frontier" data-hull="HHI-2189">
+                    <td class="td-label">HD Frontier</td>
+                    <td>HHI-2189</td>
+                    <td>9812345</td>
+                    <td>Container</td>
+                    <td><span class="sts sts-navy">TS</span></td>
+                    <td>2026.02.12</td>
+                    <td>2</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openHistModal('HD Frontier', 'TS')"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                  <tr data-name="HD Challenger" data-hull="HHI-2102">
+                    <td class="td-label">HD Challenger</td>
+                    <td>HHI-2102</td>
+                    <td>9798765</td>
+                    <td>LNG Carrier</td>
+                    <td><span class="sts sts-info">H/C</span></td>
+                    <td>2025.09.15</td>
+                    <td>4</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openHistModal('HD Challenger', 'H/C')"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                  <tr data-name="HD Navigator" data-hull="HHI-2056">
+                    <td class="td-label">HD Navigator</td>
+                    <td>HHI-2056</td>
+                    <td>9745678</td>
+                    <td>VLCC</td>
+                    <td><span class="sts sts-info">H/C</span></td>
+                    <td>2025.06.20</td>
+                    <td>2</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openHistModal('HD Navigator', 'H/C')"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                  <tr data-name="HD Explorer" data-hull="HHI-1998">
+                    <td class="td-label">HD Explorer</td>
+                    <td>HHI-1998</td>
+                    <td>9698765</td>
+                    <td>Bulk Carrier</td>
+                    <td><span class="sts sts-navy">TS</span></td>
+                    <td>2025.08.10</td>
+                    <td>1</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openHistModal('HD Explorer', 'TS')"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                  <tr data-name="HD Voyager" data-hull="HHI-1944">
+                    <td class="td-label">HD Voyager</td>
+                    <td>HHI-1944</td>
+                    <td>9654321</td>
+                    <td>Container</td>
+                    <td><span class="sts sts-warn">RT</span></td>
+                    <td>2025.08.05</td>
+                    <td>3</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openHistModal('HD Voyager', 'RT')"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                  <tr data-name="HD Guardian" data-hull="HHI-1887">
+                    <td class="td-label">HD Guardian</td>
+                    <td>HHI-1887</td>
+                    <td>9612345</td>
+                    <td>LNG Carrier</td>
+                    <td><span class="sts sts-navy">TS</span></td>
+                    <td>2025.03.11</td>
+                    <td>2</td>
+                    <td style="text-align: center">
+                      <button
+                        class="btn-view"
+                        onclick="openHistModal('HD Guardian', 'TS')"
+                      >
+                        조회
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ═══════ TRACKING DETAIL MODAL ═══════ -->
+      <div class="modal-overlay" id="trackModal2">
+        <div class="modal-box" style="max-width: 860px">
+          <div class="modal-header">
+            <h3 id="trackModalTitle">Service Tracking</h3>
+            <button class="modal-close" onclick="closeTrackModal2()">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body" id="trackModalBody"></div>
+        </div>
+      </div>
+
+      <!-- ═══════ HISTORY DETAIL MODAL ═══════ -->
+      <div class="modal-overlay" id="histModal">
+        <div class="modal-box" style="max-width: 700px">
+          <div class="modal-header">
+            <h3 id="histModalTitle">Service History</h3>
+            <button class="modal-close" onclick="closeHistModal()">
+              &times;
+            </button>
+          </div>
+          <div class="modal-body" id="histModalBody"></div>
+        </div>
+      </div>
+
+      <!-- ╔══════════════════════════════════════╗ -->
+      <!-- ║  P3 — 점검/수리 이력                  ║ -->
+      <!-- ╚══════════════════════════════════════╝ -->
+      <div class="panel" id="p3">
+        <div class="page-title-bar">
+          <h2><span class="accent-bar"></span>점검 / 수리 이력</h2>
+          <div class="breadcrumb">
+            포털 &gt; <strong>Service History</strong>
+          </div>
+        </div>
+
+        <div class="g2">
+          <div class="card">
+            <div class="card-header"><h3>Health Check History</h3></div>
+            <div class="card-body">
+              <table class="dt">
+                <thead>
+                  <tr>
+                    <th>항목</th>
+                    <th>내용</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="td-label">방문 일자</td>
+                    <td>헬스체크 수행일</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">점검 엔지니어</td>
+                    <td>담당 엔지니어 이름</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">점검 항목</td>
+                    <td>절연저항, 차단기 동작시간, 온도, 외관 검사</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">측정값</td>
+                    <td>각 항목별 실제 측정값 (숫자)</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">판정</td>
+                    <td>
+                      <span class="sts sts-ok">정상</span>
+                      <span class="sts sts-warn">주의</span>
+                      <span class="sts sts-danger">위험</span>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">리포트</td>
+                    <td>해당 회차 점검 리포트 열람/다운로드</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">권고사항</td>
+                    <td>엔지니어 권고 내용</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3>Repair History</h3></div>
+            <div class="card-body">
+              <table class="dt">
+                <thead>
+                  <tr>
+                    <th>항목</th>
+                    <th>내용</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="td-label">작업 건명</td>
+                    <td>"MSB #1 ACB 교체" 등</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">작업 일자</td>
+                    <td>수리 시작/완료일</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">작업 내용</td>
+                    <td>상세 작업 내역</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">교체 부품</td>
+                    <td>부품명, 모델, 수량</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">작업 인원</td>
+                    <td>투입 인원 수, 작업일 수</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">비용</td>
+                    <td>총 비용 (선택적 공개)</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">보증 기간</td>
+                    <td>해당 수리 건 보증 종료일</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>Timeline View</h3></div>
+          <div class="card-body">
+            <div class="timeline">
+              <div class="tl-item tl-green">
+                <div class="tl-date">2026.03.15</div>
+                <div class="tl-body">
+                  <span class="sts sts-ok" style="margin-right: 8px"
+                    >헬스체크</span
+                  >정기 점검 완료 — 전 항목 정상
+                </div>
+              </div>
+              <div class="tl-item tl-orange">
+                <div class="tl-date">2025.11.20</div>
+                <div class="tl-body">
+                  <span class="sts sts-warn" style="margin-right: 8px"
+                    >수리</span
+                  >MSB #2 ACB 동작시간 초과 — 교체 완료
+                </div>
+              </div>
+              <div class="tl-item tl-blue">
+                <div class="tl-date">2025.09.05</div>
+                <div class="tl-body">
+                  <span class="sts sts-info" style="margin-right: 8px"
+                    >서비스 요청</span
+                  >ESB 절연저항 저하 문의
+                </div>
+              </div>
+              <div class="tl-item tl-green">
+                <div class="tl-date">2025.03.10</div>
+                <div class="tl-body">
+                  <span class="sts sts-ok" style="margin-right: 8px"
+                    >헬스체크</span
+                  >정기 점검 완료
+                </div>
+              </div>
+              <div class="tl-item tl-orange">
+                <div class="tl-date">2024.08.22</div>
+                <div class="tl-body">
+                  <span class="sts sts-warn" style="margin-right: 8px"
+                    >부품 교체</span
+                  >ESB MCCB 3개 교체
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ╔══════════════════════════════════════╗ -->
+      <!-- ║  P4 — 리포트 시각화 대시보드           ║ -->
+      <!-- ╚══════════════════════════════════════╝ -->
+      <div class="panel" id="p4">
+        <div class="page-title-bar">
+          <h2><span class="accent-bar"></span>리포트 시각화 대시보드</h2>
+          <div class="breadcrumb">
+            포털 &gt; <strong>Report Dashboard</strong>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>Vessel Health Score</h3></div>
+          <div class="card-body">
+            <div class="gauge-box">
+              <div class="gauge-ring" style="--gauge-pct: 78%">
+                <span class="g-val">78</span>
+              </div>
+              <div>
+                <div
+                  style="
+                    font-size: 18px;
+                    font-weight: 700;
+                    color: var(--hd-navy);
+                  "
+                >
+                  종합 건강도 점수
+                </div>
+                <div
+                  style="
+                    font-size: 13px;
+                    color: var(--hd-gray-500);
+                    margin-top: 4px;
+                  "
+                >
+                  100점 만점 게이지 차트 · 전월 대비
+                  <strong style="color: var(--hd-green)">+3점</strong>
+                </div>
+              </div>
+            </div>
+            <div class="g3" style="margin-top: 8px">
+              <div class="stat-card">
+                <div class="stat-label">MSB #1</div>
+                <div class="stat-val" style="color: var(--hd-green)">92</div>
+                <span class="sts sts-ok">정상</span>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">MSB #2</div>
+                <div class="stat-val" style="color: var(--hd-orange)">64</div>
+                <span class="sts sts-warn">주의</span>
+              </div>
+              <div class="stat-card">
+                <div class="stat-label">ESB</div>
+                <div class="stat-val" style="color: var(--hd-green)">85</div>
+                <span class="sts sts-ok">정상</span>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="g2">
+          <div class="card">
+            <div class="card-header"><h3>Measurement Trend</h3></div>
+            <div class="card-body">
+              <table class="dt">
+                <thead>
+                  <tr>
+                    <th>측정 항목</th>
+                    <th>그래프</th>
+                    <th>표시</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="td-label">절연저항</td>
+                    <td>꺾은선 (시계열)</td>
+                    <td>12~24개월 추이 + 기준선</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">차단기 동작시간</td>
+                    <td>가로 막대</td>
+                    <td>정상 범위 vs 현재값</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">온도</td>
+                    <td>히트맵</td>
+                    <td>R/S/T상 부위별 온도</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">전류/전압</td>
+                    <td>꺾은선</td>
+                    <td>불평형률 추이</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3>Parts Lifecycle</h3></div>
+            <div class="card-body">
+              <div class="prog-row">
+                <div class="prog-label">
+                  <span>MSB #1 ACB</span
+                  ><span class="pct" style="color: var(--hd-green)">72%</span>
+                </div>
+                <div class="prog-track">
+                  <div
+                    class="prog-fill"
+                    style="width: 72%; background: var(--hd-green)"
+                  ></div>
+                </div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">
+                  <span>MSB #2 ACB</span
+                  ><span class="pct" style="color: var(--hd-danger)">28%</span>
+                </div>
+                <div class="prog-track">
+                  <div
+                    class="prog-fill"
+                    style="width: 28%; background: var(--hd-danger)"
+                  ></div>
+                </div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">
+                  <span>ESB MCCB</span
+                  ><span class="pct" style="color: var(--hd-green)">91%</span>
+                </div>
+                <div class="prog-track">
+                  <div
+                    class="prog-fill"
+                    style="width: 91%; background: var(--hd-green)"
+                  ></div>
+                </div>
+              </div>
+              <div class="prog-row">
+                <div class="prog-label">
+                  <span>DB #1 MCB</span
+                  ><span class="pct" style="color: var(--hd-green)">85%</span>
+                </div>
+                <div class="prog-track">
+                  <div
+                    class="prog-fill"
+                    style="width: 85%; background: var(--hd-green)"
+                  ></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="g2">
+          <div class="card">
+            <div class="card-header"><h3>AI 분석 코멘트 (향후)</h3></div>
+            <div class="card-body">
+              <div class="noti-item">
+                <span class="sts sts-warn" style="flex-shrink: 0">트렌드</span
+                ><span style="margin-left: 8px"
+                  >"절연저항 월평균 27MΩ 하락 — 6개월 후 위험 진입 예상"</span
+                >
+              </div>
+              <div class="noti-item">
+                <span class="sts sts-info" style="flex-shrink: 0">비교</span
+                ><span style="margin-left: 8px"
+                  >"동일 타입 선박 10척 중 하위 20%"</span
+                >
+              </div>
+              <div class="noti-item">
+                <span class="sts sts-danger" style="flex-shrink: 0">권고</span
+                ><span style="margin-left: 8px"
+                  >"다음 입거 시 정밀 점검 권장"</span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3>리포트 생성/출력</h3></div>
+            <div class="card-body">
+              <table class="dt">
+                <thead>
+                  <tr>
+                    <th>기능</th>
+                    <th>상세</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="td-label">자동 리포트</td>
+                    <td>대시보드 데이터 기반 PDF 자동 생성</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">수동 커스텀</td>
+                    <td>PM 코멘트 추가, 항목 선택 후 커스텀 리포트</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">리포트 이력</td>
+                    <td>과거 발행 리포트 전체 목록</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">이메일 발송</td>
+                    <td>웹에서 바로 고객에게 발송</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ╔══════════════════════════════════════╗ -->
+      <!-- ║  P5 — 기술 문서 라이브러리             ║ -->
+      <!-- ╚══════════════════════════════════════╝ -->
+      <div class="panel" id="p5">
+        <div class="page-title-bar">
+          <h2><span class="accent-bar"></span>기술 문서 라이브러리</h2>
+          <div class="breadcrumb">
+            포털 &gt; <strong>Technical Library</strong>
+          </div>
+        </div>
+
+        <div class="g2">
+          <div class="card">
+            <div class="card-header"><h3>문서 분류</h3></div>
+            <div class="card-body">
+              <table class="dt">
+                <thead>
+                  <tr>
+                    <th>카테고리</th>
+                    <th>내용</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="td-label">운용 매뉴얼</td>
+                    <td>배전반 운용/정비 매뉴얼 (호선별)</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">단선도/복선도</td>
+                    <td>배전반 회로도 (호선별)</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">부품 카탈로그</td>
+                    <td>적용 부품 목록 + 스펙시트</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">기술 회보</td>
+                    <td>안전 공지, 설계 변경, 업데이트</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">시험 성적서</td>
+                    <td>FAT 성적서, 현장 시험 성적서</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">인증서</td>
+                    <td>선급 인증서, 형식 승인서</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3>문서 접근 방식</h3></div>
+            <div class="card-body">
+              <table class="dt">
+                <thead>
+                  <tr>
+                    <th>기능</th>
+                    <th>상세</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="td-label">호선별 자동 매칭</td>
+                    <td>선박 선택 → 해당 문서만 필터</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">카테고리 탐색</td>
+                    <td>문서 유형별 폴더 구조</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">키워드 검색</td>
+                    <td>제목, 내용 전문 검색</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">온라인 뷰어</td>
+                    <td>브라우저 내 도면/문서 열람</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">버전 관리</td>
+                    <td>이전 버전 보관 + 최신 버전 표시</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>기술 회보 (Technical Bulletin)</h3></div>
+          <div class="card-body">
+            <table class="dt">
+              <thead>
+                <tr>
+                  <th>기능</th>
+                  <th>상세</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="td-label">발행</td>
+                  <td>안전 공지, 설계 변경, 리콜, 업데이트 정보</td>
+                </tr>
+                <tr>
+                  <td class="td-label">대상 필터</td>
+                  <td>
+                    해당 회보 적용 선박/설비 자동 매칭 → 해당 고객에게만 표시
+                  </td>
+                </tr>
+                <tr>
+                  <td class="td-label">읽음 확인</td>
+                  <td>고객 확인 추적 (안전 관련 회보)</td>
+                </tr>
+                <tr>
+                  <td class="td-label">이메일 알림</td>
+                  <td>새 회보 발행 시 자동 이메일 알림</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ╔══════════════════════════════════════╗ -->
+      <!-- ║  P6 — 알림/리마인더 시스템             ║ -->
+      <!-- ╚══════════════════════════════════════╝ -->
+      <div class="panel" id="p6">
+        <div class="page-title-bar">
+          <h2><span class="accent-bar"></span>알림 / 리마인더 시스템</h2>
+          <div class="breadcrumb">포털 &gt; <strong>Notification</strong></div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>알림 종류 (7종)</h3></div>
+          <div class="card-body">
+            <table class="dt">
+              <thead>
+                <tr>
+                  <th>알림 유형</th>
+                  <th>트리거 조건</th>
+                  <th>수신 대상</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="td-label">정기 점검 알림</td>
+                  <td>마지막 헬스체크 후 N개월 경과</td>
+                  <td>고객 + PM</td>
+                </tr>
+                <tr>
+                  <td class="td-label">부품 교체 알림</td>
+                  <td>부품 설치 후 N년 경과 or 개폐 횟수 초과</td>
+                  <td>고객 + PM</td>
+                </tr>
+                <tr>
+                  <td class="td-label">입거 사전 알림</td>
+                  <td>등록된 입거 예정일 D-30, D-14, D-7</td>
+                  <td>고객 + PM</td>
+                </tr>
+                <tr>
+                  <td class="td-label">서비스 진행 알림</td>
+                  <td>견적 발송, PO 수신, 공사 시작/완료</td>
+                  <td>고객</td>
+                </tr>
+                <tr>
+                  <td class="td-label">기술 회보 알림</td>
+                  <td>해당 선박 적용 새 회보 발행</td>
+                  <td>고객</td>
+                </tr>
+                <tr>
+                  <td class="td-label">리포트 발행 알림</td>
+                  <td>새 점검 리포트 업로드</td>
+                  <td>고객</td>
+                </tr>
+                <tr>
+                  <td class="td-label">장기 미응답 알림</td>
+                  <td>견적 발송 후 N일간 고객 응답 없음</td>
+                  <td>PM (내부)</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>알림 전달 방식</h3></div>
+          <div class="card-body">
+            <table class="dt">
+              <thead>
+                <tr>
+                  <th>방식</th>
+                  <th>상세</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="td-label">웹 내 알림</td>
+                  <td>대시보드 상단 벨 아이콘 + 알림 목록</td>
+                </tr>
+                <tr>
+                  <td class="td-label">이메일</td>
+                  <td>알림 내용을 이메일로 동시 발송</td>
+                </tr>
+                <tr>
+                  <td class="td-label">알림 설정</td>
+                  <td>고객이 알림 유형별로 ON/OFF 설정 가능</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ╔══════════════════════════════════════╗ -->
+      <!-- ║  P7 — 소통 채널                      ║ -->
+      <!-- ╚══════════════════════════════════════╝ -->
+      <div class="panel" id="p7">
+        <div class="page-title-bar">
+          <h2><span class="accent-bar"></span>소통 채널</h2>
+          <div class="breadcrumb">포털 &gt; <strong>Communication</strong></div>
+        </div>
+
+        <div class="g2">
+          <div class="card">
+            <div class="card-header"><h3>웹 내 메시지</h3></div>
+            <div class="card-body">
+              <table class="dt">
+                <thead>
+                  <tr>
+                    <th>기능</th>
+                    <th>상세</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="td-label">서비스 건별 채팅</td>
+                    <td>각 서비스 요청 건에 연결된 메시지 스레드</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">파일 첨부</td>
+                    <td>메시지에 사진, 문서 첨부 가능</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">이메일 알림</td>
+                    <td>새 메시지 수신 시 이메일 알림</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">이력 보존</td>
+                    <td>모든 메시지 이력 영구 보존</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3>담당자 연결</h3></div>
+            <div class="card-body">
+              <table class="dt">
+                <thead>
+                  <tr>
+                    <th>기능</th>
+                    <th>상세</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="td-label">담당 PM 프로필</td>
+                    <td>이름, 직책, 연락처, 담당 선박 목록</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">원터치 연락</td>
+                    <td>전화, 이메일, 웹 메시지 버튼</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">긴급 연락</td>
+                    <td>24시간 긴급 연락처 (스마트케어 센터)</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ╔══════════════════════════════════════╗ -->
+      <!-- ║  P8 — PM 백오피스                    ║ -->
+      <!-- ╚══════════════════════════════════════╝ -->
+      <div class="panel" id="p8">
+        <div class="page-title-bar">
+          <h2><span class="accent-bar"></span>관리자(PM) 전용 백오피스</h2>
+          <div class="breadcrumb">포털 &gt; <strong>PM Backoffice</strong></div>
+        </div>
+
+        <div class="g2">
+          <div class="card">
+            <div class="card-header"><h3>PM 대시보드</h3></div>
+            <div class="card-body">
+              <table class="dt">
+                <thead>
+                  <tr>
+                    <th>요소</th>
+                    <th>상세</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="td-label">내 담당 건 목록</td>
+                    <td>진행 중인 서비스 요청 전체 (단계별 분류)</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">알림</td>
+                    <td>새 서비스 요청, 고객 메시지, 기한 임박 건</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">건별 카드</td>
+                    <td>AI 분석 결과 포함된 건별 요약 카드</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">통계</td>
+                    <td>처리 현황, 평균 처리 시간, 고객 만족도</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-header"><h3>AI 연동 기능</h3></div>
+            <div class="card-body">
+              <table class="dt">
+                <thead>
+                  <tr>
+                    <th>기능</th>
+                    <th>상세</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="td-label">메일 AI 분석</td>
+                    <td>
+                      HMS 메일 → 3초 만에 Work Scope/일정/견적 자동 추출 → 카드
+                      생성
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">인수인계</td>
+                    <td>
+                      PM 변경 시 AI가 담당 건 전체 요약 문서 자동 생성 (30분)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">견적 자동 산출</td>
+                    <td>과거 유사 건 기반 러프 견적 초안</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">협력업체 추천</td>
+                    <td>과거 이력 기반 추천</td>
+                  </tr>
+                  <tr>
+                    <td class="td-label">수기발주서 알림</td>
+                    <td>
+                      긴급공사 + PO 미확인 → 자동 드래프트 + 알림 (하도급법
+                      대응)
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+
+        <!-- 기대효과 -->
+        <div class="card">
+          <div class="card-header"><h3>기대효과 — Before vs After</h3></div>
+          <div class="card-body">
+            <table class="dt">
+              <thead>
+                <tr>
+                  <th>항목</th>
+                  <th style="color: var(--hd-gray-500)">Before</th>
+                  <th style="color: var(--hd-red)">After</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="td-label">서비스 요청</td>
+                  <td>전화/이메일 (업무시간)</td>
+                  <td><strong>웹 24/7 즉시 접수</strong></td>
+                </tr>
+                <tr>
+                  <td class="td-label">호선 정보 조회</td>
+                  <td>전화 문의 → 내부 확인 후 회신</td>
+                  <td><strong>웹에서 3초 검색</strong></td>
+                </tr>
+                <tr>
+                  <td class="td-label">서비스 진행 확인</td>
+                  <td>PM에게 전화/메일 문의</td>
+                  <td><strong>웹 실시간 추적 (6단계 스텝 바)</strong></td>
+                </tr>
+                <tr>
+                  <td class="td-label">기술 문서 접근</td>
+                  <td>요청 시 이메일 제공</td>
+                  <td><strong>웹에서 호선별 즉시 열람/다운로드</strong></td>
+                </tr>
+                <tr>
+                  <td class="td-label">점검 리포트</td>
+                  <td>텍스트/숫자 나열</td>
+                  <td><strong>시각화 대시보드 (그래프/게이지)</strong></td>
+                </tr>
+                <tr>
+                  <td class="td-label">점검/수리 이력</td>
+                  <td>PM 개인 메일/파일에 분산</td>
+                  <td><strong>웹 타임라인으로 통합 조회</strong></td>
+                </tr>
+                <tr>
+                  <td class="td-label">견적 회신</td>
+                  <td>2~3일 (수동)</td>
+                  <td><strong>당일 (AI 자동 산출)</strong></td>
+                </tr>
+                <tr>
+                  <td class="td-label">PM 인수인계</td>
+                  <td>메일 50통 포워딩 (1~2주)</td>
+                  <td><strong>AI 건별 카드 자동 생성 (30분)</strong></td>
+                </tr>
+                <tr>
+                  <td class="td-label">알림/리마인더</td>
+                  <td>PM 수동 관리</td>
+                  <td><strong>점검 시기/부품 교체/입거 자동 알림</strong></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- ╔══════════════════════════════════════╗ -->
+      <!-- ║  P9 — 격차 해소 방안 (4대 방안)       ║ -->
+      <!-- ╚══════════════════════════════════════╝ -->
+      <div class="panel" id="p9">
+        <div class="page-title-bar">
+          <h2><span class="accent-bar"></span>선도기업 격차 해소 — 4대 방안</h2>
+          <div class="breadcrumb">포털 &gt; <strong>전략 제안</strong></div>
+        </div>
+
+        <!-- 로드맵 -->
+        <div class="card" style="margin-bottom: 28px">
+          <div class="card-header"><h3>구현 로드맵</h3></div>
+          <div class="card-body">
+            <table class="prio-table">
+              <thead>
+                <tr>
+                  <th>Phase</th>
+                  <th>기간</th>
+                  <th>내용</th>
+                  <th>투자</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td><span class="rank-star">1</span></td>
+                  <td style="font-weight: 600">1~3개월</td>
+                  <td>PM AI 자동화 + 리포트 템플릿 + 원격 Level 1</td>
+                  <td><span class="sts sts-ok">낮음 (거의 0)</span></td>
+                </tr>
+                <tr>
+                  <td><span class="rank-star">2</span></td>
+                  <td style="font-weight: 600">3~6개월</td>
+                  <td>
+                    웹 포털 MVP + 원격 Level 2 + 라이프사이클 Tier 1 파일럿
+                  </td>
+                  <td><span class="sts sts-warn">중간</span></td>
+                </tr>
+                <tr>
+                  <td><span class="rank-star">3</span></td>
+                  <td style="font-weight: 600">6~12개월</td>
+                  <td>웹 포털 고도화 + 리포트 대시보드 + 계약 확대</td>
+                  <td><span class="sts sts-warn">중간</span></td>
+                </tr>
+                <tr>
+                  <td><span class="rank-num">4</span></td>
+                  <td style="font-weight: 600">12개월~</td>
+                  <td>Hi-4S/ISS 2.0 연동 + 전사 확대 + AR 원격</td>
+                  <td><span class="sts sts-navy">그룹 협의</span></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- 방안 1 -->
+        <div class="proposal">
+          <div class="prop-head">
+            <h3>방안 1. 고객용 웹 포털 구축</h3>
+            <span class="prop-tag">핵심 방안</span>
+          </div>
+          <div class="prop-body">
+            <div class="row-title">설계 완료 — 9개 기능 영역</div>
+            <ul>
+              <li>
+                <strong>A. 대시보드</strong> — 내 선박 목록 + 상태, 진행 중
+                서비스, 알림, 빠른 메뉴
+              </li>
+              <li>
+                <strong>B. 호선정보</strong> — 선박 검색, 배전반 스펙, 회로도,
+                기자재 목록
+              </li>
+              <li>
+                <strong>C. 서비스 요청</strong> — 7단계 폼
+                (선박→유형→설비→내용→첨부→일정→긴급도)
+              </li>
+              <li>
+                <strong>D. 서비스 추적</strong> — 6단계 스텝바, 실시간 추적,
+                메시지 소통
+              </li>
+              <li>
+                <strong>E. 점검/수리 이력</strong> — 헬스체크, 수리 이력,
+                타임라인 뷰
+              </li>
+              <li>
+                <strong>F. 리포트 대시보드</strong> — 건강도 게이지, 추이
+                그래프, 부품 수명, AI 분석
+              </li>
+              <li>
+                <strong>G. 기술 문서</strong> — 매뉴얼, 단선도, 부품 카탈로그,
+                기술회보
+              </li>
+              <li>
+                <strong>H. 알림</strong> —
+                점검/부품/입거/서비스/회보/리포트/미응답 (7종)
+              </li>
+              <li>
+                <strong>I. PM 백오피스</strong> — AI 메일 분석, 인수인계, 견적,
+                수기발주서 알림
+              </li>
+            </ul>
+            <div class="row-title">핵심 메시지</div>
+            <p
+              style="
+                font-size: 14px;
+                color: var(--hd-navy);
+                font-weight: 600;
+                line-height: 1.8;
+                padding: 8px 0;
+              "
+            >
+              "선도기업과의 차이는 기술력이 아니라 '디지털 창구'다. 웹 포털
+              하나가 그 창구가 된다."
+            </p>
+          </div>
+        </div>
+
+        <!-- 방안 2 -->
+        <div class="proposal">
+          <div class="prop-head">
+            <h3>방안 2. 라이프사이클 계약 (Lifecycle Agreement)</h3>
+            <span class="prop-tag">바르질라 벤치마킹</span>
+          </div>
+          <div class="prop-body">
+            <div class="row-title">3티어 연간 계약</div>
+            <table class="dt">
+              <thead>
+                <tr>
+                  <th>Tier</th>
+                  <th>내용</th>
+                  <th>기간</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="td-label">Basic</td>
+                  <td>연간 헬스체크 + 시각화 리포트 + 웹 포털 + 알림</td>
+                  <td>1~2년</td>
+                </tr>
+                <tr>
+                  <td class="td-label">Standard</td>
+                  <td>
+                    + 기술 지원 무제한 + 우선 대응 + 전담 PM + 부품 수명 관리
+                  </td>
+                  <td>2~3년</td>
+                </tr>
+                <tr>
+                  <td class="td-label">Premium</td>
+                  <td>
+                    + 수리 비용 포함(정액) + 긴급 SLA + 원격 지원 + 정비 계획 +
+                    교육
+                  </td>
+                  <td>3~5년</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="row-title">기대 이득</div>
+            <ul>
+              <li>반복 매출 (10억+/년 가정), 고객 lock-in, 마진 개선</li>
+              <li>무상 헬스체크 유상화, 건별 불규칙 매출 → 안정적 구조</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 방안 3 -->
+        <div class="proposal">
+          <div class="prop-head">
+            <h3>방안 3. 원격 기술 지원 (Remote Expert Support)</h3>
+            <span class="prop-tag">3단계 도입</span>
+          </div>
+          <div class="prop-body">
+            <table class="dt">
+              <thead>
+                <tr>
+                  <th>Level</th>
+                  <th>방식</th>
+                  <th>도입 시점</th>
+                  <th>비용</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td class="td-label">Level 1</td>
+                  <td>전화/영상통화 (기존 스마트폰)</td>
+                  <td>즉시</td>
+                  <td><span class="sts sts-ok">0원</span></td>
+                </tr>
+                <tr>
+                  <td class="td-label">Level 2</td>
+                  <td>화상 플랫폼 (화면 공유, 녹화, 포인터)</td>
+                  <td>3~6개월</td>
+                  <td><span class="sts sts-warn">낮음</span></td>
+                </tr>
+                <tr>
+                  <td class="td-label">Level 3</td>
+                  <td>AR 원격 가이드 (스마트글래스)</td>
+                  <td>12개월~</td>
+                  <td><span class="sts sts-navy">중간</span></td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="row-title">실적 참고</div>
+            <ul>
+              <li>
+                바르질라: 95% 원격 해결 / 미 해군: AR 지원 시 수리 47% 빨라짐
+              </li>
+              <li>출장비 50% 절감 (연 1.5억 원), 대응 속도 수주→수시간</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 방안 4 -->
+        <div class="proposal">
+          <div class="prop-head">
+            <h3>방안 4. PM 업무 AI 자동화</h3>
+            <span class="prop-tag">즉시 도입 가능</span>
+          </div>
+          <div class="prop-body">
+            <div class="row-title">현재 문제</div>
+            <ul>
+              <li>모든 업무가 메일 기반 → 정보 분산, 반복 작업 70%</li>
+              <li>인수인계 = 메일 50통 포워딩 → 1~2주 소요</li>
+              <li>긴급공사 수기발주서 누락 → 하도급법 위반 리스크</li>
+            </ul>
+            <div class="row-title">AI 해결</div>
+            <ul>
+              <li>
+                <strong>메일 AI 분석:</strong> HMS 메일 → 3초 만에
+                선박/일정/Work Scope/견적 자동 추출
+              </li>
+              <li><strong>건별 카드 자동 생성</strong> → 인수인계 30분</li>
+              <li>
+                <strong>과거 유사 건 매칭</strong> + 협력업체 추천 + 러프 견적
+                자동 산출
+              </li>
+              <li>
+                <strong>수기발주서:</strong> 긴급공사 + PO 미확인 시 자동
+                드래프트 + 알림
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- 마무리 -->
+        <div class="card" style="border-left: 4px solid var(--hd-red)">
+          <div class="card-body" style="padding: 24px 28px">
+            <p
+              style="font-size: 15px; line-height: 2; color: var(--hd-gray-700)"
+            >
+              "바르질라는 웹 포털에서 서비스를 관리하고, 콩스버그는 웹
+              플랫폼으로 선박과 육상을 연결합니다.<br />
+              우리 고객은 아직 전화와 이메일로 연락합니다.<br />
+              선도기업과의 차이는 기술력이 아닙니다.<br />
+              우리는 <strong style="color: var(--hd-red)">9,890척</strong>의 AS
+              네트워크와 최고의 기술력을 이미 갖고 있습니다.<br />
+              부족한 건 그것을 담는
+              <strong style="color: var(--hd-navy)">디지털 창구</strong>입니다."
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- .main-body -->
+
+    <!-- ═══════ FOOTER ═══════ -->
+    <footer
+      style="
+        background: var(--hd-navy);
+        color: rgba(255, 255, 255, 0.5);
+        padding: 32px 40px;
+        font-size: 11px;
+        line-height: 1.8;
+      "
+    >
+      <div
+        style="
+          max-width: 1360px;
+          margin: 0 auto;
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          flex-wrap: wrap;
+          gap: 16px;
+        "
+      >
+        <div>
+          <strong style="color: #fff; font-size: 13px"
+            >HD현대마린솔루션테크</strong
+          ><br />
+          부산광역시 해운대구 센텀중앙로 79 | HD Hyundai Marine Solution Tech
+          Co., Ltd.
+        </div>
+        <div style="text-align: right">
+          선도기업 AM 전략 벤치마킹 — 고객 웹 포털 상세 설계 초안<br />
+          &copy; 2026 HD현대마린솔루션테크. All rights reserved.
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      // Tab switching
+      const nav = document.getElementById('tabNav');
+      const tabs = nav.querySelectorAll('.tab-item');
+      const panels = document.querySelectorAll('.panel');
+
+      tabs.forEach((t) => {
+        t.addEventListener('click', () => {
+          tabs.forEach((b) => b.classList.remove('active'));
+          panels.forEach((p) => p.classList.remove('active'));
+          t.classList.add('active');
+          document.getElementById(t.dataset.tab).classList.add('active');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+      });
+
+      // ── Vessel filter (realtime) ──
+      const filterName = document.getElementById('filterName');
+      const filterHull = document.getElementById('filterHull');
+      const vesselRows = document.querySelectorAll('#vesselTable tbody tr');
+
+      function filterVessels() {
+        const nameVal = filterName.value;
+        const hullVal = filterHull.value.trim().toLowerCase();
+        vesselRows.forEach((row, i) => {
+          const rName = row.dataset.name;
+          const rHull = row.dataset.hull.toLowerCase();
+          const matchName = !nameVal || rName === nameVal;
+          const matchHull = !hullVal || rHull.includes(hullVal);
+          row.style.display = matchName && matchHull ? '' : 'none';
+        });
+      }
+      filterName.addEventListener('change', filterVessels);
+      filterHull.addEventListener('input', filterVessels);
+
+      // ── Vessel detail modal ──
+      function openModal(name, hull, type, year, imo) {
+        document.getElementById('modalTitle').textContent =
+          name + ' — Vessel Detail';
+        document.getElementById('mdName').textContent = name;
+        document.getElementById('mdIMO').textContent = imo;
+        document.getElementById('mdHull').textContent = hull;
+        document.getElementById('mdType').textContent = type;
+        document.getElementById('mdYear').textContent = year;
+        document.getElementById('vesselModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeModal() {
+        document.getElementById('vesselModal').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      document
+        .getElementById('vesselModal')
+        .addEventListener('click', function (e) {
+          if (e.target === this) closeModal();
+        });
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          closeModal();
+          closeTrackModal2();
+          closeHistModal();
+        }
+      });
+
+      // ── Service Request (inline) ──
+      let srStep = 1;
+      const srTotal = 7;
+      const srFiles = [];
+
+      function srUpdateUI() {
+        document.querySelectorAll('#sub1 .sr-step').forEach((s) => {
+          const n = parseInt(s.dataset.s);
+          s.classList.remove('active', 'done');
+          if (n === srStep) s.classList.add('active');
+          else if (n < srStep) s.classList.add('done');
+        });
+        document
+          .querySelectorAll('#sub1 .sr-pane')
+          .forEach((p) => p.classList.remove('active'));
+        const target =
+          srStep <= srTotal
+            ? document.getElementById('srPane' + srStep)
+            : document.getElementById('srPaneDone');
+        if (target) target.classList.add('active');
+        const prevBtn = document.getElementById('srPrev');
+        const nextBtn = document.getElementById('srNext');
+        const submitBtn = document.getElementById('srSubmit');
+        const navBar = document.getElementById('srNav');
+        if (srStep > srTotal) {
+          navBar.style.display = 'none';
+          return;
+        }
+        navBar.style.display = 'flex';
+        prevBtn.disabled = srStep === 1;
+        if (srStep === srTotal) {
+          nextBtn.style.display = 'none';
+          submitBtn.style.display = '';
+          srBuildSummary();
+        } else {
+          nextBtn.style.display = '';
+          submitBtn.style.display = 'none';
+        }
+      }
+      function srGo(dir) {
+        const n = srStep + dir;
+        if (n >= 1 && n <= srTotal) {
+          srStep = n;
+          srUpdateUI();
+        }
+      }
+      function srSubmit() {
+        srStep = srTotal + 1;
+        srUpdateUI();
+      }
+      function srReset() {
+        srStep = 1;
+        document.getElementById('srVessel').value = '';
+        document
+          .querySelectorAll('#srType input')
+          .forEach((r) => (r.checked = false));
+        document
+          .querySelectorAll('#srEquip input')
+          .forEach((c) => (c.checked = false));
+        document.getElementById('srDesc').value = '';
+        document.getElementById('srDockDate').value = '';
+        document.getElementById('srWorkDate').value = '';
+        document.getElementById('srScheduleNote').value = '';
+        document.querySelectorAll('#srUrgency input')[0].checked = true;
+        srFiles.length = 0;
+        document.getElementById('srFileList').innerHTML = '';
+        srUpdateUI();
+      }
+      function srBuildSummary() {
+        document.getElementById('sumVessel').textContent =
+          document.getElementById('srVessel').value || '—';
+        const typeR = document.querySelector('input[name="srType"]:checked');
+        document.getElementById('sumType').textContent = typeR
+          ? typeR.value
+          : '—';
+        const equips = [
+          ...document.querySelectorAll('#srEquip input:checked'),
+        ].map((c) => c.value);
+        document.getElementById('sumEquip').textContent = equips.length
+          ? equips.join(', ')
+          : '—';
+        const d1 = document.getElementById('srDockDate').value;
+        const d2 = document.getElementById('srWorkDate').value;
+        document.getElementById('sumDate').textContent =
+          d1 || d2 ? [d1, d2].filter(Boolean).join(' ~ ') : '—';
+        const urgR = document.querySelector('input[name="srUrg"]:checked');
+        document.getElementById('sumUrg').textContent = urgR
+          ? urgR.value
+          : '일반';
+      }
+
+      // File dropzone
+      const dz = document.getElementById('srDropzone');
+      const fi = document.getElementById('srFile');
+      dz.addEventListener('click', () => fi.click());
+      dz.addEventListener('dragover', (e) => {
+        e.preventDefault();
+        dz.classList.add('dragover');
+      });
+      dz.addEventListener('dragleave', () => dz.classList.remove('dragover'));
+      dz.addEventListener('drop', (e) => {
+        e.preventDefault();
+        dz.classList.remove('dragover');
+        srAddFiles(e.dataTransfer.files);
+      });
+      fi.addEventListener('change', () => {
+        srAddFiles(fi.files);
+        fi.value = '';
+      });
+      function srAddFiles(files) {
+        [...files].forEach((f) => {
+          srFiles.push(f.name);
+          renderFileList();
+        });
+      }
+      function renderFileList() {
+        const el = document.getElementById('srFileList');
+        el.innerHTML = srFiles
+          .map(
+            (name, i) =>
+              '<span class="sr-file-tag">' +
+              name +
+              '<span class="sr-file-x" onclick="srRemoveFile(' +
+              i +
+              ')">&times;</span></span>',
+          )
+          .join('');
+      }
+      function srRemoveFile(i) {
+        srFiles.splice(i, 1);
+        renderFileList();
+      }
+
+      // ── Sub-tab switching (via dropdown) ──
+      function goSub(tabId, subId) {
+        // activate tab
+        tabs.forEach((b) => b.classList.remove('active'));
+        panels.forEach((p) => p.classList.remove('active'));
+        const tabBtn = document.querySelector('[data-tab="' + tabId + '"]');
+        if (tabBtn) tabBtn.classList.add('active');
+        document.getElementById(tabId).classList.add('active');
+        // activate sub-panel
+        document
+          .querySelectorAll('#' + tabId + ' .sub-panel')
+          .forEach((p) => p.classList.remove('active'));
+        document.getElementById(subId).classList.add('active');
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }
+
+      // ── Track filter ──
+      function filterTrack() {
+        const n = document.getElementById('trackFilterName').value;
+        const h = document
+          .getElementById('trackFilterHull')
+          .value.trim()
+          .toLowerCase();
+        document.querySelectorAll('#trackTable tbody tr').forEach((row) => {
+          const matchN = !n || row.dataset.name === n;
+          const matchH = !h || row.dataset.hull.toLowerCase().includes(h);
+          row.style.display = matchN && matchH ? '' : 'none';
+        });
+      }
+
+      // ── Track detail modal ──
+      const trackDB = {
+        1: {
+          vessel: 'HD Harmony',
+          type: '헬스체크 요청',
+          sts: 'PM 배정',
+          steps: [
+            {
+              name: '접수',
+              date: '2026.04.10',
+              pm: '—',
+              note: '전체 배전반 정기 헬스체크 요청',
+            },
+            {
+              name: 'PM 배정',
+              date: '2026.04.11',
+              pm: '이승호 (010-5555-1234)',
+              note: '담당 PM 배정 완료',
+            },
+          ],
+          pipeIdx: 1,
+        },
+        2: {
+          vessel: 'HD Pioneer',
+          type: '수리 요청',
+          sts: '고객 승인 대기',
+          steps: [
+            {
+              name: '접수',
+              date: '2026.03.20',
+              pm: '—',
+              note: 'MSB #2 ACB 동작시간 초과 수리 요청',
+            },
+            {
+              name: 'PM 배정',
+              date: '2026.03.21',
+              pm: '박정우 (010-1234-5678)',
+              note: '담당 PM 배정 완료',
+            },
+            {
+              name: 'T/S · 견적',
+              date: '2026.03.25',
+              pm: '박정우',
+              note: '견적서 발송 — ACB 교체 ₩12,500,000',
+            },
+          ],
+          pipeIdx: 3,
+        },
+        3: {
+          vessel: 'HD Frontier',
+          type: '기술 지원',
+          sts: '완료',
+          steps: [
+            {
+              name: '접수',
+              date: '2026.02.10',
+              pm: '—',
+              note: 'ESB 절연저항 확인 문의',
+            },
+            {
+              name: 'PM 배정',
+              date: '2026.02.10',
+              pm: '이승호',
+              note: '당일 배정',
+            },
+            {
+              name: 'T/S · 견적',
+              date: '2026.02.12',
+              pm: '이승호',
+              note: '원격 기술 지원으로 해결',
+            },
+            { name: '고객 승인', date: '—', pm: '—', note: '—' },
+            { name: '공사 진행', date: '—', pm: '—', note: '—' },
+            {
+              name: '완료',
+              date: '2026.02.12',
+              pm: '이승호',
+              note: '원격 완료',
+            },
+          ],
+          pipeIdx: 5,
+        },
+        4: {
+          vessel: 'HD Challenger',
+          type: '긴급 수리',
+          sts: '공사 진행 중',
+          steps: [
+            {
+              name: '접수',
+              date: '2026.04.01',
+              pm: '—',
+              note: 'ESB MCCB 절연 파괴 긴급 수리',
+            },
+            {
+              name: 'PM 배정',
+              date: '2026.04.01',
+              pm: '신채린 (010-9876-5432)',
+              note: '긴급 — 당일 배정',
+            },
+            {
+              name: 'T/S · 견적',
+              date: '2026.04.02',
+              pm: '신채린',
+              note: '견적서 발송 — MCCB 3개 교체 ₩4,200,000',
+            },
+            {
+              name: '고객 승인',
+              date: '2026.04.03',
+              pm: '—',
+              note: 'PO 수신 완료',
+            },
+            {
+              name: '공사 진행',
+              date: '2026.04.05',
+              pm: '신채린 + 현장 2명',
+              note: '싱가포르 입거 중',
+            },
+          ],
+          pipeIdx: 4,
+        },
+      };
+      const pipeNames = [
+        '접수',
+        'PM 배정',
+        'T/S · 견적',
+        '고객 승인',
+        '공사 진행',
+        '완료',
+      ];
+
+      function openTrackModal(vessel, hull, dataId) {
+        const d = trackDB[dataId];
+        if (!d) {
+          document.getElementById('trackModalTitle').textContent =
+            vessel + ' — Service Tracking';
+          document.getElementById('trackModalBody').innerHTML =
+            '<p style="padding:20px;color:var(--hd-gray-500);text-align:center;">진행 중인 서비스 요청이 없습니다.</p>';
+          document.getElementById('trackModal2').classList.add('open');
+          document.body.style.overflow = 'hidden';
+          return;
+        }
+        document.getElementById('trackModalTitle').textContent =
+          d.vessel + ' — ' + d.type;
+        let pipe =
+          '<div style="display:flex;align-items:center;justify-content:flex-end;margin-bottom:12px;"><span class="sts sts-info">' +
+          d.sts +
+          '</span></div>';
+        pipe += '<div class="pipeline">';
+        pipeNames.forEach((n, i) => {
+          const cls = i < d.pipeIdx ? 'done' : i === d.pipeIdx ? 'current' : '';
+          pipe += '<div class="pipe-node ' + cls + '">' + n + '</div>';
+        });
+        pipe += '</div>';
+        let tbl =
+          '<table class="dt" style="margin-top:16px;"><thead><tr><th>단계</th><th>일자</th><th>담당자</th><th>비고</th></tr></thead><tbody>';
+        d.steps.forEach((s) => {
+          if (s.date !== '—')
+            tbl +=
+              '<tr><td class="td-label">' +
+              s.name +
+              '</td><td>' +
+              s.date +
+              '</td><td>' +
+              s.pm +
+              '</td><td>' +
+              s.note +
+              '</td></tr>';
+        });
+        tbl += '</tbody></table>';
+        document.getElementById('trackModalBody').innerHTML = pipe + tbl;
+        document.getElementById('trackModal2').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeTrackModal2() {
+        document.getElementById('trackModal2').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      document
+        .getElementById('trackModal2')
+        .addEventListener('click', function (e) {
+          if (e.target === this) closeTrackModal2();
+        });
+
+      // ── History filter ──
+      function filterHistory() {
+        const n = document.getElementById('histFilterName').value;
+        const h = document
+          .getElementById('histFilterHull')
+          .value.trim()
+          .toLowerCase();
+        document.querySelectorAll('#historyTable tbody tr').forEach((row) => {
+          const matchN = !n || row.dataset.name === n;
+          const matchH = !h || row.dataset.hull.toLowerCase().includes(h);
+          row.style.display = matchN && matchH ? '' : 'none';
+        });
+      }
+
+      // ── History detail modal ──
+      function openHistModal(vessel, type) {
+        document.getElementById('histModalTitle').textContent =
+          vessel + ' — ' + type;
+        let html = '';
+        if (type === 'H/C') {
+          html =
+            '<div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">';
+          html +=
+            '<div class="search-field"><label>방문 일자</label><input type="date" class="sr-input"></div>';
+          html +=
+            '<div class="search-field"><label>작업 업체</label><input type="text" class="sr-input" placeholder="업체명"></div>';
+          html +=
+            '<div class="search-field"><label>점검 항목</label><input type="text" class="sr-input" placeholder="예: 절연저항"></div>';
+          html += '</div>';
+          html +=
+            '<table class="dt"><thead><tr><th>점검 항목</th><th>측정값</th><th>판정</th><th>비고</th></tr></thead><tbody>';
+          html +=
+            '<tr><td class="td-label">절연저항 (MSB #1)</td><td>520 MΩ</td><td><span class="sts sts-ok">정상</span></td><td>—</td></tr>';
+          html +=
+            '<tr><td class="td-label">절연저항 (MSB #2)</td><td>180 MΩ</td><td><span class="sts sts-warn">주의</span></td><td>추이 관찰 필요</td></tr>';
+          html +=
+            '<tr><td class="td-label">ACB 동작시간</td><td>58ms</td><td><span class="sts sts-ok">정상</span></td><td>—</td></tr>';
+          html +=
+            '<tr><td class="td-label">온도 (R상)</td><td>42°C</td><td><span class="sts sts-ok">정상</span></td><td>—</td></tr>';
+          html += '</tbody></table>';
+        } else if (type === 'RT') {
+          html =
+            '<div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">';
+          html +=
+            '<div class="search-field"><label>작업 건명</label><input type="text" class="sr-input" placeholder="예: MSB #1 ACB 교체"></div>';
+          html +=
+            '<div class="search-field"><label>작업 일자</label><input type="date" class="sr-input"></div>';
+          html +=
+            '<div class="search-field"><label>점검 내용</label><input type="text" class="sr-input" placeholder="키워드"></div>';
+          html += '</div>';
+          html +=
+            '<table class="dt"><thead><tr><th>작업 건명</th><th>작업 일자</th><th>교체 부품</th><th>비용</th></tr></thead><tbody>';
+          html +=
+            '<tr><td class="td-label">MSB #1 ACB 교체</td><td>2025.11.20</td><td>ABB Emax2 x1</td><td>₩12,500,000</td></tr>';
+          html +=
+            '<tr><td class="td-label">ESB MCCB 교체</td><td>2025.04.22</td><td>LS SUSOL x3</td><td>₩4,200,000</td></tr>';
+          html += '</tbody></table>';
+        } else {
+          html =
+            '<div style="display:flex;gap:16px;flex-wrap:wrap;margin-bottom:16px;">';
+          html +=
+            '<div class="search-field"><label>문의 건명</label><input type="text" class="sr-input" placeholder="키워드"></div>';
+          html +=
+            '<div class="search-field"><label>문의 일자</label><input type="date" class="sr-input"></div>';
+          html += '</div>';
+          html +=
+            '<table class="dt"><thead><tr><th>문의 건명</th><th>문의일</th><th>답변일</th><th>담당 PM</th></tr></thead><tbody>';
+          html +=
+            '<tr><td class="td-label">차단기 정격 확인 문의</td><td>2025.03.10</td><td>2025.03.11</td><td>이승호</td></tr>';
+          html +=
+            '<tr><td class="td-label">ESB 절연저항 저하 문의</td><td>2025.08.10</td><td>2025.08.12</td><td>박정우</td></tr>';
+          html += '</tbody></table>';
+        }
+        document.getElementById('histModalBody').innerHTML = html;
+        document.getElementById('histModal').classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+      function closeHistModal() {
+        document.getElementById('histModal').classList.remove('open');
+        document.body.style.overflow = '';
+      }
+      document
+        .getElementById('histModal')
+        .addEventListener('click', function (e) {
+          if (e.target === this) closeHistModal();
+        });
+    </script>
+  </body>
+</html>
