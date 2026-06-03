@@ -3,6 +3,10 @@
   "rewrites": [
     {
       "source": "/",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/hd_support_portal",
       "destination": "/hd_support_portal.html"
     }
   ]
