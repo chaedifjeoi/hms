@@ -1771,7 +1771,20 @@
         tr.dataset.hull = data.hull;
         tr.innerHTML = `<td></td><td>${data.requestDate}</td><td>${data.vessel}</td><td>${data.hull}</td><td><button class="btn" onclick="openSupportDetail('${data.vessel}')">조회</button></td><td><span class="status wait">금주 전송 예정</span></td>`;
         rows.prepend(tr);
+        dedupeSummaryRows();
         renumberSummaryRows();
+      }
+
+      function dedupeSummaryRows() {
+        const seen = new Set();
+        document.querySelectorAll("#summaryRows tr").forEach((row) => {
+          const key = `${row.dataset.name || row.children[2]?.textContent}-${row.dataset.hull || row.children[3]?.textContent}`;
+          if (seen.has(key)) {
+            row.remove();
+          } else {
+            seen.add(key);
+          }
+        });
       }
 
       function renumberSummaryRows() {
@@ -2081,6 +2094,8 @@
 
       setStep(1);
       updateCategoryUI();
+      dedupeSummaryRows();
+      renumberSummaryRows();
       document.body.classList.add("home-active");
     </script>
   </body>
