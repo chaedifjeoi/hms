@@ -1,9 +1,9 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>HD현대마린솔루션테크 | 기술지원 포털</title>
+    <title>Hi-Connect | 기술지원 포털</title>
     <style>
       @font-face {
         font-family: "HDHyundai";
@@ -217,7 +217,7 @@
         padding: 76px 6vw 50px;
         background:
           linear-gradient(90deg, rgba(0, 37, 84, 0.86), rgba(0, 48, 135, 0.26)),
-          url("image-13.png") center / cover no-repeat;
+          url("User attachment.png") center / cover no-repeat;
         color: #fff;
       }
 
@@ -511,6 +511,41 @@
         resize: vertical;
       }
 
+      .upload-box {
+        display: grid;
+        gap: 10px;
+        padding: 16px;
+        border: 1px dashed #9fb3ce;
+        border-radius: 6px;
+        background: #f7faff;
+      }
+
+      .upload-box input {
+        height: auto;
+        padding: 0;
+        border: 0;
+        background: transparent;
+      }
+
+      .upload-meta {
+        color: var(--muted);
+        font-size: 12px;
+        font-weight: 700;
+      }
+
+      .upload-preview {
+        display: none;
+        max-width: 220px;
+        max-height: 130px;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        object-fit: cover;
+      }
+
+      .upload-preview.active {
+        display: block;
+      }
+
       .field input:focus,
       .field textarea:focus,
       .field select:focus {
@@ -527,16 +562,20 @@
       .choice {
         display: flex;
         gap: 12px;
-        align-items: flex-start;
-        min-height: 86px;
-        padding: 16px;
+        align-items: center;
+        min-height: 64px;
+        padding: 14px 16px;
         border: 1px solid var(--line);
         border-radius: var(--radius);
         background: #fff;
+        transition: border-color 0.15s ease, background 0.15s ease, box-shadow 0.15s ease;
       }
 
       .choice input {
-        margin-top: 4px;
+        width: 16px;
+        height: 16px;
+        margin: 0;
+        accent-color: var(--blue);
       }
 
       .choice strong {
@@ -547,6 +586,13 @@
       .choice small {
         color: var(--muted);
       }
+
+      .choice:has(input:checked) {
+        border-color: var(--blue);
+        background: #f3f7fc;
+        box-shadow: inset 4px 0 0 var(--blue);
+      }
+
 
       .wizard-foot {
         display: flex;
@@ -574,6 +620,41 @@
 
       .summary-row b {
         color: var(--navy);
+      }
+
+      .detail-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 10px;
+        margin-bottom: 14px;
+      }
+
+      .detail-card {
+        padding: 12px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: #f8fbff;
+      }
+
+      .detail-card span {
+        display: block;
+        color: var(--muted);
+        font-size: 11px;
+        font-weight: 700;
+      }
+
+      .detail-card strong {
+        display: block;
+        margin-top: 4px;
+        color: var(--navy);
+      }
+
+      .history-note {
+        margin-top: 14px;
+        padding: 12px;
+        border-left: 4px solid var(--blue);
+        background: #f3f7fc;
+        color: #344054;
       }
 
       .table-tools {
@@ -760,6 +841,115 @@
         border: 1px solid var(--line);
         border-radius: 5px;
         padding: 0 14px;
+      }
+
+      .chatbot-fab {
+        position: fixed;
+        right: 28px;
+        bottom: 28px;
+        z-index: 90;
+        display: grid;
+        place-items: center;
+        width: 62px;
+        height: 62px;
+        border: 0;
+        border-radius: 50%;
+        border: 2px solid var(--navy);
+        background: #fff;
+        color: var(--navy);
+        font-size: 25px;
+        font-weight: 900;
+        box-shadow: 0 16px 34px rgba(0, 37, 84, 0.28);
+        cursor: pointer;
+      }
+
+      .chatbot-widget {
+        position: fixed;
+        right: 28px;
+        bottom: 98px;
+        z-index: 95;
+        display: none;
+        width: min(380px, calc(100vw - 32px));
+        height: 510px;
+        max-height: calc(100vh - 128px);
+        overflow: hidden;
+        border: 1px solid var(--navy);
+        border-radius: 10px;
+        background: #fff;
+        box-shadow: 0 24px 60px rgba(0, 24, 56, 0.24);
+      }
+
+      .chatbot-widget.open {
+        display: grid;
+        grid-template-rows: 58px 1fr 58px;
+      }
+
+      body:not(.home-active) .chatbot-fab,
+      body:not(.home-active) .chatbot-widget {
+        display: none;
+      }
+
+      .chatbot-head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 16px;
+        border-bottom: 1px solid var(--line);
+        background: #fff;
+        color: var(--navy);
+      }
+
+      .chatbot-head strong {
+        display: block;
+        font-size: 14px;
+      }
+
+      .chatbot-head span {
+        display: block;
+        margin-top: 2px;
+        color: var(--muted);
+        font-size: 11px;
+      }
+
+      .chatbot-close {
+        border: 0;
+        background: transparent;
+        color: var(--navy);
+        font-size: 22px;
+        cursor: pointer;
+      }
+
+      .chatbot-body {
+        overflow: auto;
+        padding: 14px;
+        background: #fff;
+      }
+
+      .chatbot-body .agent .bubble {
+        background: #f4f7fb;
+        border: 1px solid #d8e1ee;
+        color: var(--navy);
+      }
+
+      .chatbot-body .me .bubble {
+        background: var(--navy);
+        color: #fff;
+      }
+
+      .chatbot-input {
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px;
+        padding: 10px;
+        border-top: 1px solid var(--line);
+        background: #fff;
+      }
+
+      .chatbot-input input {
+        min-width: 0;
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        padding: 0 12px;
       }
 
       .modal {
@@ -967,7 +1157,7 @@
           <button class="nav-link active" data-panel="home">홈</button>
         </div>
         <div class="nav-item">
-          <button class="nav-link" data-panel="support">기술 지원 요청</button>
+          <button class="nav-link" data-panel="support">기술 지원</button>
           <div class="dropdown">
             <button data-panel="support" data-sub="request">기술 지원 요청</button>
             <button data-panel="support" data-sub="summary">기술 지원 요약</button>
@@ -978,14 +1168,15 @@
           <div class="dropdown">
             <button data-panel="data" data-sub="vessels">호선 정보 조회</button>
             <button data-panel="data" data-sub="history">점검 수리 이력</button>
-            <button data-panel="data" data-sub="manuals">매뉴얼 및 도면</button>
+            <button data-panel="data" data-sub="manuals">매뉴얼</button>
+            <button data-panel="data" data-sub="drawings">도면</button>
           </div>
         </div>
         <div class="nav-item">
           <button class="nav-link" data-panel="vr">VR Training</button>
         </div>
         <div class="nav-item">
-          <button class="nav-link" data-panel="system">통합관리시스템</button>
+          <button class="nav-link" data-panel="system">통합진단시스템</button>
         </div>
       </nav>
     </header>
@@ -994,16 +1185,11 @@
       <section id="home" class="panel active">
         <div class="hero">
           <div class="hero-inner">
-            <div class="eyebrow">24/7 Marine Technical Support</div>
-            <h1>웹 기반 기술지원과 데이터 관리를 하나의 포털에서</h1>
+            <div class="eyebrow">HD현대마린솔루션테크</div>
+            <h1>Hi-Connect</h1>
             <p>
-              선박별 기술지원 요청, AI 도면 제공, 담당자 자동 배정, 점검 이력과 매뉴얼·도면 조회까지
-              고객이 바로 사용할 수 있는 HD 스타일 포털 프로토타입입니다.
+              선박 운항 중 발생하는 기술 문의부터 이력 조회, 매뉴얼 확인, 도면 제공까지 하나의 공식 채널에서 연결합니다.
             </p>
-            <div class="hero-actions">
-              <button class="btn primary" data-panel="support" data-sub="request">기술 지원 요청</button>
-              <button class="btn ghost" data-panel="data" data-sub="vessels">호선 정보 조회</button>
-            </div>
           </div>
         </div>
       </section>
@@ -1034,8 +1220,7 @@
                 <div class="wizard-main">
                   <div class="wizard-pane active" data-pane="1">
                     <div class="eyebrow">Vessel</div>
-                    <h2>선박명을 입력하세요</h2>
-                    <p style="margin: 10px 0 24px; color: var(--muted)">예: HD Harmony, HD Pioneer</p>
+                    <h2>선박 정보를 입력하세요</h2>
                     <div class="field">
                       <label for="reqVessel">선박명</label>
                       <input id="reqVessel" placeholder="선박명을 입력하세요" value="HD Harmony" />
@@ -1048,20 +1233,19 @@
                   <div class="wizard-pane" data-pane="2">
                     <div class="eyebrow">Category</div>
                     <h2>문의 카테고리를 선택하세요</h2>
-                    <p style="margin: 10px 0 18px; color: var(--muted)">기술 문의는 대상 설비 분류까지 선택할 수 있습니다.</p>
                     <div class="choice-grid" style="margin-top: 18px">
-                      <label class="choice"><input name="reqCategory" type="radio" value="기술 문의" checked /><span><strong>기술 문의</strong><small>설비 운전, 이상 증상, 도면 확인 등</small></span></label>
-                      <label class="choice"><input name="reqCategory" type="radio" value="견적 문의" /><span><strong>견적 문의</strong><small>부품 교체, 수리, 방문 지원 견적</small></span></label>
+                      <label class="choice"><input name="reqCategory" type="radio" value="기술 문의" checked /><span><strong>기술 문의</strong></span></label>
+                      <label class="choice"><input name="reqCategory" type="radio" value="견적 문의" /><span><strong>견적 문의</strong></span></label>
                     </div>
                     <div id="techCategoryWrap" style="margin-top: 20px">
                       <div class="field" style="margin-bottom: 10px">
                         <label>기술 문의 세부 분류</label>
                       </div>
                       <div class="choice-grid">
-                        <label class="choice"><input name="techCategory" type="radio" value="배전반" checked /><span><strong>배전반</strong><small>MSB, ESB, Switchboard</small></span></label>
-                        <label class="choice"><input name="techCategory" type="radio" value="발전기" /><span><strong>발전기</strong><small>Generator, Alternator</small></span></label>
-                        <label class="choice"><input name="techCategory" type="radio" value="차단기" /><span><strong>차단기</strong><small>ACB, MCCB, Relay</small></span></label>
-                        <label class="choice"><input name="techCategory" type="radio" value="기타" /><span><strong>기타</strong><small>분류 외 기술 문의</small></span></label>
+                        <label class="choice"><input name="techCategory" type="radio" value="배전반" checked /><span><strong>배전반</strong></span></label>
+                        <label class="choice"><input name="techCategory" type="radio" value="발전기" /><span><strong>발전기</strong></span></label>
+                        <label class="choice"><input name="techCategory" type="radio" value="차단기" /><span><strong>차단기</strong></span></label>
+                        <label class="choice"><input name="techCategory" type="radio" value="기타" /><span><strong>기타</strong></span></label>
                       </div>
                     </div>
                   </div>
@@ -1070,7 +1254,15 @@
                     <h2>내용을 입력하세요</h2>
                     <div class="field">
                       <label for="reqDetail">요청 내용</label>
-                      <textarea id="reqDetail" placeholder="요청 내용을 입력하세요">발전기 운전 중 알람이 발생했고 출력이 불안정합니다. 긴급 기술 지원 요청드립니다.</textarea>
+                      <textarea id="reqDetail" placeholder="요청 내용을 입력하세요">발전기 Low Frequency 알람 표시 후 BlackOut이 발생하였습니다. 기술 지원 요청 바랍니다.</textarea>
+                    </div>
+                    <div class="field">
+                      <label for="reqImage">첨부 이미지</label>
+                      <div class="upload-box">
+                        <input id="reqImage" type="file" accept="image/*" />
+                        <span class="upload-meta" id="reqImageName">첨부된 이미지가 없습니다.</span>
+                        <img class="upload-preview" id="reqImagePreview" alt="첨부 이미지 미리보기" />
+                      </div>
                     </div>
                   </div>
                   <div class="wizard-pane" data-pane="4">
@@ -1092,17 +1284,29 @@
             <div class="card">
               <div class="card-head">
                 <h3>기술 지원 요약</h3>
-                <span class="status wait">주 1회 전송 · 금요일 17:00</span>
               </div>
               <div class="card-body">
-                <table>
+                <div class="table-tools">
+                  <input id="summaryNameFilter" placeholder="호선명 검색" oninput="filterTable('summaryTable', 'summaryNameFilter', 'summaryHullFilter')" />
+                  <input id="summaryHullFilter" placeholder="호선번호 검색" oninput="filterTable('summaryTable', 'summaryNameFilter', 'summaryHullFilter')" />
+                </div>
+                <table id="summaryTable">
                   <thead>
                     <tr><th>NO.</th><th>요청 날짜</th><th>Vessel Name</th><th>Hull No</th><th>Detail</th><th>주간 전송</th></tr>
                   </thead>
                   <tbody id="summaryRows">
-                    <tr><td>1</td><td>2026-05-25</td><td>HD Harmony</td><td>HHI1234</td><td><button class="btn" onclick="openSupportDetail('HD Harmony')">조회</button></td><td><span class="status wait">금주 전송 예정</span></td></tr>
-                    <tr><td>2</td><td>2026-05-22</td><td>HD Pioneer</td><td>HHI2480</td><td><button class="btn" onclick="openSupportDetail('HD Pioneer')">조회</button></td><td><span class="status">전송완료</span></td></tr>
-                    <tr><td>3</td><td>2026-05-19</td><td>HD Frontier</td><td>HHI3921</td><td><button class="btn" onclick="openSupportDetail('HD Frontier')">조회</button></td><td><span class="status">전송완료</span></td></tr>
+                    <tr data-name="HD Harmony" data-hull="HHI1234"><td>1</td><td>2026-06-04</td><td>HD Harmony</td><td>HHI1234</td><td><button class="btn" onclick="openSupportDetail('HD Harmony')">조회</button></td><td><span class="status wait">금주 전송 예정</span></td></tr>
+                    <tr data-name="HD Pioneer" data-hull="HHI2480"><td>2</td><td>2026-05-22</td><td>HD Pioneer</td><td>HHI2480</td><td><button class="btn" onclick="openSupportDetail('HD Pioneer')">조회</button></td><td><span class="status">전송완료</span></td></tr>
+                    <tr data-name="HD Frontier" data-hull="HHI3921"><td>3</td><td>2026-05-19</td><td>HD Frontier</td><td>HHI3921</td><td><button class="btn" onclick="openSupportDetail('HD Frontier')">조회</button></td><td><span class="status">전송완료</span></td></tr>
+                    <tr data-name="HD Voyager" data-hull="HHI7204"><td>4</td><td>2026-05-17</td><td>HD Voyager</td><td>HHI7204</td><td><button class="btn" onclick="openSupportDetail('HD Voyager')">조회</button></td><td><span class="status">전송완료</span></td></tr>
+                    <tr data-name="HD Ocean" data-hull="HHI4582"><td>5</td><td>2026-05-15</td><td>HD Ocean</td><td>HHI4582</td><td><button class="btn" onclick="openSupportDetail('HD Ocean')">조회</button></td><td><span class="status">전송완료</span></td></tr>
+                    <tr data-name="HD Marine" data-hull="HHI5306"><td>6</td><td>2026-05-13</td><td>HD Marine</td><td>HHI5306</td><td><button class="btn" onclick="openSupportDetail('HD Marine')">조회</button></td><td><span class="status">전송완료</span></td></tr>
+                    <tr data-name="HD Wave" data-hull="HHI6815"><td>7</td><td>2026-05-10</td><td>HD Wave</td><td>HHI6815</td><td><button class="btn" onclick="openSupportDetail('HD Wave')">조회</button></td><td><span class="status">전송완료</span></td></tr>
+                    <tr data-name="HD Stellar" data-hull="HHI9147"><td>8</td><td>2026-05-08</td><td>HD Stellar</td><td>HHI9147</td><td><button class="btn" onclick="openSupportDetail('HD Stellar')">조회</button></td><td><span class="status">전송완료</span></td></tr>
+                    <tr data-name="HD Anchor" data-hull="HHI2764"><td>9</td><td>2026-05-06</td><td>HD Anchor</td><td>HHI2764</td><td><button class="btn" onclick="openSupportDetail('HD Anchor')">조회</button></td><td><span class="status">전송완료</span></td></tr>
+                    <tr data-name="HD Aurora" data-hull="HHI8351"><td>10</td><td>2026-05-03</td><td>HD Aurora</td><td>HHI8351</td><td><button class="btn" onclick="openSupportDetail('HD Aurora')">조회</button></td><td><span class="status">전송완료</span></td></tr>
+                    <tr data-name="HD Bluebell" data-hull="HHI6479"><td>11</td><td>2026-04-30</td><td>HD Bluebell</td><td>HHI6479</td><td><button class="btn" onclick="openSupportDetail('HD Bluebell')">조회</button></td><td><span class="status">전송완료</span></td></tr>
+                    <tr data-name="HD Captain" data-hull="HHI1905"><td>12</td><td>2026-04-28</td><td>HD Captain</td><td>HHI1905</td><td><button class="btn" onclick="openSupportDetail('HD Captain')">조회</button></td><td><span class="status">전송완료</span></td></tr>
                   </tbody>
                 </table>
               </div>
@@ -1113,16 +1317,19 @@
             <div class="chat-layout">
               <aside class="chat-list">
                 <h3>채팅 목록</h3>
-                <div class="chat-thread"><strong>HD Harmony</strong><span>도면 QR 제공 완료 · 방금 전</span></div>
-                <div class="chat-thread"><strong>HD Pioneer</strong><span>미주 담당자 배정 · 12분 전</span></div>
-                <div class="chat-thread"><strong>HD Frontier</strong><span>기술 문의 처리 중 · 28분 전</span></div>
+                <div class="chat-thread" onclick="openSupportChat('HD Harmony')" style="cursor: pointer"><strong>HD Harmony</strong><span>BNWAS A 알람 T/S · 금주 접수</span></div>
+                <div class="chat-thread" onclick="openSupportChat('HD Pioneer')" style="cursor: pointer"><strong>HD Pioneer</strong><span>발전기 출력 알람 · 담당자 검토중</span></div>
+                <div class="chat-thread" onclick="openSupportChat('HD Frontier')" style="cursor: pointer"><strong>HD Frontier</strong><span>ACB 동작 지연 문의 · 회신 대기</span></div>
+                <div class="chat-thread" onclick="openSupportChat('HD Voyager')" style="cursor: pointer"><strong>HD Voyager</strong><span>도면 열람 권한 확인 · 보안 검토</span></div>
+                <div class="chat-thread" onclick="openSupportChat('HD Ocean')" style="cursor: pointer"><strong>HD Ocean</strong><span>IPU-10 DI 채널 점검 · 현장 확인 요청</span></div>
+                <div class="chat-thread" onclick="openSupportChat('HD Marine')" style="cursor: pointer"><strong>HD Marine</strong><span>정기 점검 리포트 문의 · 처리 완료</span></div>
               </aside>
               <section class="kakao">
                 <div class="kakao-head"><span>HD Harmony 기술지원 센터</span><span>Case Open</span></div>
                 <div class="kakao-body" id="staticChat">
-                  <div class="bubble-row agent"><div class="bubble">안녕하세요. HD현대마린솔루션테크 기술지원입니다.</div></div>
-                  <div class="bubble-row me"><div class="bubble">HD Harmony / HHI1234 / 도면 요청</div></div>
-                  <div class="bubble-row agent"><div class="bubble">요청하신 도면 QR 코드입니다.<div class="qr-box"><span>DRAWING QR</span></div></div></div>
+                  <div class="bubble-row me"><div class="bubble">저희 선박 HD HARMONY의 Navigation 장비에서 A 알람이 발생했으나 BNWAS(Hi-WMS)에서 A 알람이 발생하지 않았어요.</div></div>
+                  <div class="bubble-row agent"><div class="bubble">담당자가 배정되었습니다. 선박 HD HARMONY의 T/S 담당자로 배정된 신채린입니다.</div></div>
+                  <div class="bubble-row agent"><div class="bubble">OPU-10 알람 표시 여부, IPU-10 케이블 상태, Navigation 장비 알람 상태를 우선 확인해 주세요.</div></div>
                 </div>
                 <div class="kakao-input"><input placeholder="메시지를 입력하세요" /><button class="btn navy">전송</button></div>
               </section>
@@ -1136,12 +1343,13 @@
           <div class="page-title">
             <div>
               <h2>데이터 관리</h2>
-              <p>호선 정보, 점검 수리 이력, 매뉴얼 및 도면을 검색하고 조회합니다.</p>
+              <p>호선 정보, 점검 수리 이력, 매뉴얼과 도면 자료를 검색하고 조회합니다.</p>
             </div>
             <div class="subtabs" data-tabs="data">
               <button class="active" data-sub="vessels">호선 정보 조회</button>
               <button data-sub="history">점검 수리 이력</button>
-              <button data-sub="manuals">매뉴얼 및 도면</button>
+              <button data-sub="manuals">매뉴얼</button>
+              <button data-sub="drawings">도면</button>
             </div>
           </div>
 
@@ -1150,16 +1358,36 @@
               <div class="card-head"><h3>호선 정보 조회</h3></div>
               <div class="card-body">
                 <div class="table-tools">
-                  <input id="vesselNameFilter" placeholder="Vessel Name 검색" oninput="filterTable('vesselTable', 'vesselNameFilter', 'vesselHullFilter')" />
-                  <input id="vesselHullFilter" placeholder="Hull NO. 검색" oninput="filterTable('vesselTable', 'vesselNameFilter', 'vesselHullFilter')" />
+                  <input id="vesselNameFilter" placeholder="호선명 검색" oninput="filterTable('vesselTable', 'vesselNameFilter', 'vesselHullFilter')" />
+                  <input id="vesselHullFilter" placeholder="호선번호 검색" oninput="filterTable('vesselTable', 'vesselNameFilter', 'vesselHullFilter')" />
                 </div>
                 <table id="vesselTable">
-                  <thead><tr><th>Vessel Name</th><th>Hull No.</th><th>Type</th><th>Built Year</th></tr></thead>
+                  <thead><tr><th>호선명</th><th>호선번호</th><th>IMO번호</th><th>선종</th><th>선형</th><th>인도일</th></tr></thead>
                   <tbody>
-                    <tr data-name="HD Harmony" data-hull="HHI1234"><td>HD Harmony</td><td>HHI1234</td><td>CNTR</td><td>2014</td></tr>
-                    <tr data-name="HD Pioneer" data-hull="HHI2480"><td>HD Pioneer</td><td>HHI2480</td><td>LNG</td><td>2018</td></tr>
-                    <tr data-name="HD Frontier" data-hull="HHI3921"><td>HD Frontier</td><td>HHI3921</td><td>CNTR</td><td>2021</td></tr>
-                    <tr data-name="HD Voyager" data-hull="HHI7204"><td>HD Voyager</td><td>HHI7204</td><td>LNG</td><td>2024</td></tr>
+                    <tr data-name="HD Harmony" data-hull="HHI1234"><td>HD Harmony</td><td>HHI1234</td><td>9312486</td><td>CNTR</td><td>11430TEU</td><td>2014</td></tr>
+                    <tr data-name="HD Pioneer" data-hull="HHI2480"><td>HD Pioneer</td><td>HHI2480</td><td>9475201</td><td>LPG</td><td>35K</td><td>2018</td></tr>
+                    <tr data-name="HD Frontier" data-hull="HHI3921"><td>HD Frontier</td><td>HHI3921</td><td>9587314</td><td>B/C</td><td>28K</td><td>2021</td></tr>
+                    <tr data-name="HD Voyager" data-hull="HHI7204"><td>HD Voyager</td><td>HHI7204</td><td>9638452</td><td>P/C</td><td>8K</td><td>2024</td></tr>
+                    <tr data-name="HD Ocean" data-hull="HHI4582"><td>HD Ocean</td><td>HHI4582</td><td>9382047</td><td>CNTR</td><td>11430TEU</td><td>2016</td></tr>
+                    <tr data-name="HD Marine" data-hull="HHI5306"><td>HD Marine</td><td>HHI5306</td><td>9516738</td><td>LPG</td><td>5K</td><td>2019</td></tr>
+                    <tr data-name="HD Wave" data-hull="HHI6815"><td>HD Wave</td><td>HHI6815</td><td>9449812</td><td>B/C</td><td>35K</td><td>2020</td></tr>
+                    <tr data-name="HD Stellar" data-hull="HHI9147"><td>HD Stellar</td><td>HHI9147</td><td>9694025</td><td>P/C</td><td>8K</td><td>2022</td></tr>
+                    <tr data-name="HD Anchor" data-hull="HHI2764"><td>HD Anchor</td><td>HHI2764</td><td>9356721</td><td>CNTR</td><td>11430TEU</td><td>2015</td></tr>
+                    <tr data-name="HD Aurora" data-hull="HHI8351"><td>HD Aurora</td><td>HHI8351</td><td>9725186</td><td>LPG</td><td>35K</td><td>2023</td></tr>
+                    <tr data-name="HD Bluebell" data-hull="HHI6479"><td>HD Bluebell</td><td>HHI6479</td><td>9413068</td><td>B/C</td><td>28K</td><td>2017</td></tr>
+                    <tr data-name="HD Captain" data-hull="HHI1905"><td>HD Captain</td><td>HHI1905</td><td>9564183</td><td>P/C</td><td>5K</td><td>2021</td></tr>
+                    <tr data-name="HD Delta" data-hull="HHI7642"><td>HD Delta</td><td>HHI7642</td><td>9481179</td><td>CNTR</td><td>11430TEU</td><td>2018</td></tr>
+                    <tr data-name="HD Emerald" data-hull="HHI3486"><td>HD Emerald</td><td>HHI3486</td><td>9542096</td><td>LPG</td><td>8K</td><td>2020</td></tr>
+                    <tr data-name="HD Galaxy" data-hull="HHI9028"><td>HD Galaxy</td><td>HHI9028</td><td>9763041</td><td>B/C</td><td>35K</td><td>2024</td></tr>
+                    <tr data-name="HD Horizon" data-hull="HHI5173"><td>HD Horizon</td><td>HHI5173</td><td>9398504</td><td>P/C</td><td>5K</td><td>2016</td></tr>
+                    <tr data-name="HD Island" data-hull="HHI6290"><td>HD Island</td><td>HHI6290</td><td>9506817</td><td>CNTR</td><td>11430TEU</td><td>2019</td></tr>
+                    <tr data-name="HD Liberty" data-hull="HHI4816"><td>HD Liberty</td><td>HHI4816</td><td>9657380</td><td>LPG</td><td>35K</td><td>2022</td></tr>
+                    <tr data-name="HD Meridian" data-hull="HHI7539"><td>HD Meridian</td><td>HHI7539</td><td>9427645</td><td>B/C</td><td>28K</td><td>2017</td></tr>
+                    <tr data-name="HD Neptune" data-hull="HHI3062"><td>HD Neptune</td><td>HHI3062</td><td>9531720</td><td>P/C</td><td>8K</td><td>2020</td></tr>
+                    <tr data-name="HD Pacific" data-hull="HHI8754"><td>HD Pacific</td><td>HHI8754</td><td>9716395</td><td>CNTR</td><td>11430TEU</td><td>2023</td></tr>
+                    <tr data-name="HD Sentinel" data-hull="HHI2417"><td>HD Sentinel</td><td>HHI2417</td><td>9460872</td><td>LPG</td><td>5K</td><td>2018</td></tr>
+                    <tr data-name="HD Triumph" data-hull="HHI5926"><td>HD Triumph</td><td>HHI5926</td><td>9576048</td><td>B/C</td><td>35K</td><td>2021</td></tr>
+                    <tr data-name="HD Unity" data-hull="HHI4388"><td>HD Unity</td><td>HHI4388</td><td>9784152</td><td>P/C</td><td>8K</td><td>2024</td></tr>
                   </tbody>
                 </table>
               </div>
@@ -1175,11 +1403,28 @@
                   <input id="histHullFilter" placeholder="Hull NO. 검색" oninput="filterTable('historyTable', 'histNameFilter', 'histHullFilter')" />
                 </div>
                 <table id="historyTable">
-                  <thead><tr><th>Vessel Name</th><th>Hull No.</th><th>Detail</th></tr></thead>
+                  <thead><tr><th>Vessel Name</th><th>Hull No.</th><th>Last Inspection</th><th>Detail</th></tr></thead>
                   <tbody>
-                    <tr data-name="HD Harmony" data-hull="HHI1234"><td>HD Harmony</td><td>HHI1234</td><td><button class="btn" onclick="openImageModal('점검 수리 이력', 'image-1.png')">조회</button></td></tr>
-                    <tr data-name="HD Pioneer" data-hull="HHI2480"><td>HD Pioneer</td><td>HHI2480</td><td><button class="btn" onclick="openImageModal('점검 수리 이력', 'image-1.png')">조회</button></td></tr>
-                    <tr data-name="HD Frontier" data-hull="HHI3921"><td>HD Frontier</td><td>HHI3921</td><td><button class="btn" onclick="openImageModal('점검 수리 이력', 'image-1.png')">조회</button></td></tr>
+                    <tr data-name="HD Harmony" data-hull="HHI1234"><td>HD Harmony</td><td>HHI1234</td><td>2026-05-12</td><td><button class="btn" onclick="openHistoryModal('HD Harmony','HHI1234')">조회</button></td></tr>
+                    <tr data-name="HD Pioneer" data-hull="HHI2480"><td>HD Pioneer</td><td>HHI2480</td><td>2026-05-08</td><td><button class="btn" onclick="openHistoryModal('HD Pioneer','HHI2480')">조회</button></td></tr>
+                    <tr data-name="HD Frontier" data-hull="HHI3921"><td>HD Frontier</td><td>HHI3921</td><td>2026-04-29</td><td><button class="btn" onclick="openHistoryModal('HD Frontier','HHI3921')">조회</button></td></tr>
+                    <tr data-name="HD Voyager" data-hull="HHI7204"><td>HD Voyager</td><td>HHI7204</td><td>2026-04-21</td><td><button class="btn" onclick="openHistoryModal('HD Voyager','HHI7204')">조회</button></td></tr>
+                    <tr data-name="HD Ocean" data-hull="HHI4582"><td>HD Ocean</td><td>HHI4582</td><td>2026-04-15</td><td><button class="btn" onclick="openHistoryModal('HD Ocean','HHI4582')">조회</button></td></tr>
+                    <tr data-name="HD Marine" data-hull="HHI5306"><td>HD Marine</td><td>HHI5306</td><td>2026-04-02</td><td><button class="btn" onclick="openHistoryModal('HD Marine','HHI5306')">조회</button></td></tr>
+                    <tr data-name="HD Wave" data-hull="HHI6815"><td>HD Wave</td><td>HHI6815</td><td>2026-03-27</td><td><button class="btn" onclick="openHistoryModal('HD Wave','HHI6815')">조회</button></td></tr>
+                    <tr data-name="HD Stellar" data-hull="HHI9147"><td>HD Stellar</td><td>HHI9147</td><td>2026-03-18</td><td><button class="btn" onclick="openHistoryModal('HD Stellar','HHI9147')">조회</button></td></tr>
+                    <tr data-name="HD Anchor" data-hull="HHI2764"><td>HD Anchor</td><td>HHI2764</td><td>2026-03-05</td><td><button class="btn" onclick="openHistoryModal('HD Anchor','HHI2764')">조회</button></td></tr>
+                    <tr data-name="HD Aurora" data-hull="HHI8351"><td>HD Aurora</td><td>HHI8351</td><td>2026-02-24</td><td><button class="btn" onclick="openHistoryModal('HD Aurora','HHI8351')">조회</button></td></tr>
+                    <tr data-name="HD Bluebell" data-hull="HHI6479"><td>HD Bluebell</td><td>HHI6479</td><td>2026-02-11</td><td><button class="btn" onclick="openHistoryModal('HD Bluebell','HHI6479')">조회</button></td></tr>
+                    <tr data-name="HD Captain" data-hull="HHI1905"><td>HD Captain</td><td>HHI1905</td><td>2026-01-30</td><td><button class="btn" onclick="openHistoryModal('HD Captain','HHI1905')">조회</button></td></tr>
+                    <tr data-name="HD Delta" data-hull="HHI7642"><td>HD Delta</td><td>HHI7642</td><td>2026-01-16</td><td><button class="btn" onclick="openHistoryModal('HD Delta','HHI7642')">조회</button></td></tr>
+                    <tr data-name="HD Emerald" data-hull="HHI3486"><td>HD Emerald</td><td>HHI3486</td><td>2025-12-28</td><td><button class="btn" onclick="openHistoryModal('HD Emerald','HHI3486')">조회</button></td></tr>
+                    <tr data-name="HD Galaxy" data-hull="HHI9028"><td>HD Galaxy</td><td>HHI9028</td><td>2025-12-13</td><td><button class="btn" onclick="openHistoryModal('HD Galaxy','HHI9028')">조회</button></td></tr>
+                    <tr data-name="HD Horizon" data-hull="HHI5173"><td>HD Horizon</td><td>HHI5173</td><td>2025-11-26</td><td><button class="btn" onclick="openHistoryModal('HD Horizon','HHI5173')">조회</button></td></tr>
+                    <tr data-name="HD Island" data-hull="HHI6290"><td>HD Island</td><td>HHI6290</td><td>2025-11-09</td><td><button class="btn" onclick="openHistoryModal('HD Island','HHI6290')">조회</button></td></tr>
+                    <tr data-name="HD Liberty" data-hull="HHI4816"><td>HD Liberty</td><td>HHI4816</td><td>2025-10-22</td><td><button class="btn" onclick="openHistoryModal('HD Liberty','HHI4816')">조회</button></td></tr>
+                    <tr data-name="HD Meridian" data-hull="HHI7539"><td>HD Meridian</td><td>HHI7539</td><td>2025-10-07</td><td><button class="btn" onclick="openHistoryModal('HD Meridian','HHI7539')">조회</button></td></tr>
+                    <tr data-name="HD Neptune" data-hull="HHI3062"><td>HD Neptune</td><td>HHI3062</td><td>2025-09-18</td><td><button class="btn" onclick="openHistoryModal('HD Neptune','HHI3062')">조회</button></td></tr>
                   </tbody>
                 </table>
               </div>
@@ -1188,37 +1433,76 @@
 
           <div id="data-manuals" class="subpanel">
             <div class="card">
-              <div class="card-head"><h3>매뉴얼 및 도면</h3></div>
+              <div class="card-head"><h3>매뉴얼</h3></div>
               <div class="card-body">
                 <div class="table-tools">
-                  <input id="docNameFilter" placeholder="Vessel Name 검색" oninput="filterTable('docTable', 'docNameFilter', 'docHullFilter')" />
-                  <input id="docHullFilter" placeholder="Hull NO. 검색" oninput="filterTable('docTable', 'docNameFilter', 'docHullFilter')" />
+                  <input id="manualNameFilter" placeholder="Vessel Name 검색" oninput="filterTable('manualTable', 'manualNameFilter', 'manualHullFilter')" />
+                  <input id="manualHullFilter" placeholder="Hull NO. 검색" oninput="filterTable('manualTable', 'manualNameFilter', 'manualHullFilter')" />
                 </div>
-                <table id="docTable">
-                  <thead><tr><th>Vessel Name</th><th>Hull No.</th><th>Manual</th><th>Drawing</th></tr></thead>
+                <table id="manualTable">
+                  <thead><tr><th>Vessel Name</th><th>Hull No.</th><th>Manual</th></tr></thead>
                   <tbody>
-                    <tr data-name="HD Harmony" data-hull="HHI1234"><td>HD Harmony</td><td>HHI1234</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Pioneer" data-hull="HHI2480"><td>HD Pioneer</td><td>HHI2480</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Frontier" data-hull="HHI3921"><td>HD Frontier</td><td>HHI3921</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Voyager" data-hull="HHI7204"><td>HD Voyager</td><td>HHI7204</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Ocean" data-hull="HHI4582"><td>HD Ocean</td><td>HHI4582</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Marine" data-hull="HHI5306"><td>HD Marine</td><td>HHI5306</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Wave" data-hull="HHI6815"><td>HD Wave</td><td>HHI6815</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Stellar" data-hull="HHI9147"><td>HD Stellar</td><td>HHI9147</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Anchor" data-hull="HHI2764"><td>HD Anchor</td><td>HHI2764</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Aurora" data-hull="HHI8351"><td>HD Aurora</td><td>HHI8351</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Bluebell" data-hull="HHI6479"><td>HD Bluebell</td><td>HHI6479</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Captain" data-hull="HHI1905"><td>HD Captain</td><td>HHI1905</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Delta" data-hull="HHI7642"><td>HD Delta</td><td>HHI7642</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Emerald" data-hull="HHI3486"><td>HD Emerald</td><td>HHI3486</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Galaxy" data-hull="HHI9028"><td>HD Galaxy</td><td>HHI9028</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Horizon" data-hull="HHI5173"><td>HD Horizon</td><td>HHI5173</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Island" data-hull="HHI6290"><td>HD Island</td><td>HHI6290</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Liberty" data-hull="HHI4816"><td>HD Liberty</td><td>HHI4816</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Meridian" data-hull="HHI7539"><td>HD Meridian</td><td>HHI7539</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Neptune" data-hull="HHI3062"><td>HD Neptune</td><td>HHI3062</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Pacific" data-hull="HHI8754"><td>HD Pacific</td><td>HHI8754</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
-                    <tr data-name="HD Sentinel" data-hull="HHI2417"><td>HD Sentinel</td><td>HHI2417</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Harmony" data-hull="HHI1234"><td>HD Harmony</td><td>HHI1234</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Pioneer" data-hull="HHI2480"><td>HD Pioneer</td><td>HHI2480</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Frontier" data-hull="HHI3921"><td>HD Frontier</td><td>HHI3921</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Voyager" data-hull="HHI7204"><td>HD Voyager</td><td>HHI7204</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Ocean" data-hull="HHI4582"><td>HD Ocean</td><td>HHI4582</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Marine" data-hull="HHI5306"><td>HD Marine</td><td>HHI5306</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Wave" data-hull="HHI6815"><td>HD Wave</td><td>HHI6815</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Stellar" data-hull="HHI9147"><td>HD Stellar</td><td>HHI9147</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Anchor" data-hull="HHI2764"><td>HD Anchor</td><td>HHI2764</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Aurora" data-hull="HHI8351"><td>HD Aurora</td><td>HHI8351</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Bluebell" data-hull="HHI6479"><td>HD Bluebell</td><td>HHI6479</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Captain" data-hull="HHI1905"><td>HD Captain</td><td>HHI1905</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Delta" data-hull="HHI7642"><td>HD Delta</td><td>HHI7642</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Emerald" data-hull="HHI3486"><td>HD Emerald</td><td>HHI3486</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Galaxy" data-hull="HHI9028"><td>HD Galaxy</td><td>HHI9028</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Horizon" data-hull="HHI5173"><td>HD Horizon</td><td>HHI5173</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Island" data-hull="HHI6290"><td>HD Island</td><td>HHI6290</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Liberty" data-hull="HHI4816"><td>HD Liberty</td><td>HHI4816</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Meridian" data-hull="HHI7539"><td>HD Meridian</td><td>HHI7539</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Neptune" data-hull="HHI3062"><td>HD Neptune</td><td>HHI3062</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Pacific" data-hull="HHI8754"><td>HD Pacific</td><td>HHI8754</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Sentinel" data-hull="HHI2417"><td>HD Sentinel</td><td>HHI2417</td><td><button class="btn" onclick="openImageModal('매뉴얼 조회', 'image-2.png')">조회</button></td></tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+
+          <div id="data-drawings" class="subpanel">
+            <div class="card">
+              <div class="card-head"><h3>도면</h3></div>
+              <div class="card-body">
+                <div class="table-tools">
+                  <input id="drawingNameFilter" placeholder="Vessel Name 검색" oninput="filterTable('drawingTable', 'drawingNameFilter', 'drawingHullFilter')" />
+                  <input id="drawingHullFilter" placeholder="Hull NO. 검색" oninput="filterTable('drawingTable', 'drawingNameFilter', 'drawingHullFilter')" />
+                </div>
+                <table id="drawingTable">
+                  <thead><tr><th>Vessel Name</th><th>Hull No.</th><th>Drawing</th></tr></thead>
+                  <tbody>
+                    <tr data-name="HD Harmony" data-hull="HHI1234"><td>HD Harmony</td><td>HHI1234</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Pioneer" data-hull="HHI2480"><td>HD Pioneer</td><td>HHI2480</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Frontier" data-hull="HHI3921"><td>HD Frontier</td><td>HHI3921</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Voyager" data-hull="HHI7204"><td>HD Voyager</td><td>HHI7204</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Ocean" data-hull="HHI4582"><td>HD Ocean</td><td>HHI4582</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Marine" data-hull="HHI5306"><td>HD Marine</td><td>HHI5306</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Wave" data-hull="HHI6815"><td>HD Wave</td><td>HHI6815</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Stellar" data-hull="HHI9147"><td>HD Stellar</td><td>HHI9147</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Anchor" data-hull="HHI2764"><td>HD Anchor</td><td>HHI2764</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Aurora" data-hull="HHI8351"><td>HD Aurora</td><td>HHI8351</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Bluebell" data-hull="HHI6479"><td>HD Bluebell</td><td>HHI6479</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Captain" data-hull="HHI1905"><td>HD Captain</td><td>HHI1905</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Delta" data-hull="HHI7642"><td>HD Delta</td><td>HHI7642</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Emerald" data-hull="HHI3486"><td>HD Emerald</td><td>HHI3486</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Galaxy" data-hull="HHI9028"><td>HD Galaxy</td><td>HHI9028</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Horizon" data-hull="HHI5173"><td>HD Horizon</td><td>HHI5173</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Island" data-hull="HHI6290"><td>HD Island</td><td>HHI6290</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Liberty" data-hull="HHI4816"><td>HD Liberty</td><td>HHI4816</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Meridian" data-hull="HHI7539"><td>HD Meridian</td><td>HHI7539</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Neptune" data-hull="HHI3062"><td>HD Neptune</td><td>HHI3062</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Pacific" data-hull="HHI8754"><td>HD Pacific</td><td>HHI8754</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
+                    <tr data-name="HD Sentinel" data-hull="HHI2417"><td>HD Sentinel</td><td>HHI2417</td><td><button class="btn" onclick="openImageModal('도면 제공', 'image-2.png')">조회</button></td></tr>
                   </tbody>
                 </table>
               </div>
@@ -1235,14 +1519,6 @@
               <p>선박 설비 교육 콘텐츠와 실제 문제 상황 대응 절차를 웹에서 연결합니다.</p>
             </div>
           </div>
-          <div class="vr-scene">
-            <div class="vr-visual" aria-label="VR Training visual"></div>
-            <div class="feature-list">
-              <div class="feature"><strong>웹 접속형 VR 학습</strong>선박·배전반 기반 가상 환경에서 장비 구조와 작업 절차를 학습합니다.</div>
-              <div class="feature"><strong>문제 상황 시나리오</strong>절연저항 저하, 차단기 트립, 알람 발생 등 실제 케이스를 단계별로 확인합니다.</div>
-              <div class="feature"><strong>기술지원 연계</strong>고객 요청과 연결해 관련 VR 콘텐츠, 매뉴얼, 도면을 함께 제공합니다.</div>
-            </div>
-          </div>
         </div>
       </section>
 
@@ -1250,31 +1526,32 @@
         <div class="shell">
           <div class="page-title">
             <div>
-              <h2>통합관리시스템</h2>
-              <p>운영자가 요청, 담당자, 전송 상태, 서비스 이력을 통합 모니터링합니다.</p>
-            </div>
-          </div>
-          <div class="grid three">
-            <div class="card"><div class="card-body"><h3>접수 현황</h3><p style="margin-top: 12px; color: var(--muted)">오늘 접수 18건 · 처리중 6건 · 완료 12건</p></div></div>
-            <div class="card"><div class="card-body"><h3>담당자 배정</h3><p style="margin-top: 12px; color: var(--muted)">한국 3명 · 미주 2명 · 유럽 2명 운영</p></div></div>
-            <div class="card"><div class="card-body"><h3>자료 전송</h3><p style="margin-top: 12px; color: var(--muted)">도면 QR 9건 · 매뉴얼 5건 · 대기 2건</p></div></div>
-          </div>
-          <div class="card" style="margin-top: 18px">
-            <div class="card-head"><h3>통합 요청 큐</h3></div>
-            <div class="card-body">
-              <table>
-                <thead><tr><th>시간</th><th>Vessel</th><th>요청</th><th>담당자</th><th>상태</th></tr></thead>
-                <tbody>
-                  <tr><td>14:22</td><td>HD Harmony</td><td>도면 요청</td><td>AI 자동 응답</td><td><span class="status">완료</span></td></tr>
-                  <tr><td>14:09</td><td>HD Pioneer</td><td>기술 문의</td><td>Michael 담당자</td><td><span class="status wait">진행중</span></td></tr>
-                  <tr><td>13:47</td><td>HD Frontier</td><td>고장 진단</td><td>김현우 담당자</td><td><span class="status wait">진행중</span></td></tr>
-                </tbody>
-              </table>
+              <h2>통합진단시스템</h2>
+              <p>Hi-EMS, HI-4S, HD-CARE 통합</p>
             </div>
           </div>
         </div>
       </section>
     </main>
+
+    <button class="chatbot-fab" onclick="toggleChatbot()" aria-label="Hi-Connect 챗봇 열기">Hi</button>
+    <section class="chatbot-widget" id="chatbotWidget" aria-label="Hi-Connect 챗봇">
+      <div class="chatbot-head">
+        <div>
+          <strong>Hi-Connect Bot</strong>
+          <span>기술지원 상담 대기 중</span>
+        </div>
+        <button class="chatbot-close" onclick="toggleChatbot(false)" aria-label="챗봇 닫기">×</button>
+      </div>
+      <div class="chatbot-body" id="chatbotBody">
+        <div class="bubble-row agent"><div class="bubble">안녕하세요 HD현대마린솔루션테크 챗봇입니다.<br>호선명, 장비명, 증상을 입력하시면 접수 전 필요한 정보를 정리해드립니다.</div></div>
+        <div class="bubble-row agent"><div class="bubble">예: SIFSAFA H BNWAS reset issue 확인 요청</div></div>
+      </div>
+      <div class="chatbot-input">
+        <input id="chatbotInput" placeholder="메시지를 입력하세요" />
+        <button class="btn navy" onclick="sendBotChat()">전송</button>
+      </div>
+    </section>
 
     <div class="modal" id="chatModal">
       <div class="modal-box">
@@ -1309,13 +1586,23 @@
       </div>
     </div>
 
+    <div class="modal" id="historyModal">
+      <div class="modal-box">
+        <div class="modal-head">
+          <h3 id="historyModalTitle">점검 수리 이력</h3>
+          <button class="close" onclick="closeModal('historyModal')">×</button>
+        </div>
+        <div class="modal-body" id="historyModalBody"></div>
+      </div>
+    </div>
+
     <div class="modal" id="supportDetailModal">
       <div class="modal-box">
         <div class="modal-head">
           <h3 id="supportDetailTitle">기술 지원 상세</h3>
           <button class="close" onclick="closeModal('supportDetailModal')">×</button>
         </div>
-        <div class="modal-body">
+        <div class="modal-body" id="supportDetailBody">
           <div class="summary-box">
             <div class="summary-row"><b>Vessel</b><span id="detailVessel">HD Harmony</span></div>
             <div class="summary-row"><b>Hull No.</b><span>HHI1234</span></div>
@@ -1336,6 +1623,8 @@
 
       function showPanel(panelId, subId) {
         panels.forEach((panel) => panel.classList.toggle("active", panel.id === panelId));
+        document.body.classList.toggle("home-active", panelId === "home");
+        if (panelId !== "home") toggleChatbot(false);
         document.querySelectorAll(".nav-link").forEach((button) => {
           button.classList.toggle("active", button.dataset.panel === panelId);
         });
@@ -1392,10 +1681,17 @@
       document.querySelectorAll("input[name='reqCategory']").forEach((radio) => {
         radio.addEventListener("change", updateCategoryUI);
       });
+      document.getElementById("reqImage").addEventListener("change", updateImageAttachment);
       document.getElementById("chatInput").addEventListener("keydown", (event) => {
         if (event.key === "Enter" && !event.shiftKey) {
           event.preventDefault();
           sendChat();
+        }
+      });
+      document.getElementById("chatbotInput").addEventListener("keydown", (event) => {
+        if (event.key === "Enter") {
+          event.preventDefault();
+          sendBotChat();
         }
       });
 
@@ -1408,8 +1704,29 @@
           category,
           techCategory: category === "기술 문의" ? techCategory : "-",
           detail: document.getElementById("reqDetail").value || "기술 지원 요청",
+          imageName: document.getElementById("reqImage").files[0]?.name || "첨부 없음",
           requestDate: new Date().toISOString().slice(0, 10),
         };
+      }
+
+      function updateImageAttachment() {
+        const input = document.getElementById("reqImage");
+        const file = input.files[0];
+        const name = document.getElementById("reqImageName");
+        const preview = document.getElementById("reqImagePreview");
+        if (!file) {
+          name.textContent = "첨부된 이미지가 없습니다.";
+          preview.classList.remove("active");
+          preview.removeAttribute("src");
+          return;
+        }
+        name.textContent = file.name;
+        const reader = new FileReader();
+        reader.onload = () => {
+          preview.src = reader.result;
+          preview.classList.add("active");
+        };
+        reader.readAsDataURL(file);
       }
 
       function updateCategoryUI() {
@@ -1425,15 +1742,13 @@
           <div class="summary-row"><b>카테고리</b><span>${data.category}</span></div>
           <div class="summary-row"><b>세부 분류</b><span>${data.techCategory}</span></div>
           <div class="summary-row"><b>요청 날짜</b><span>${data.requestDate}</span></div>
+          <div class="summary-row"><b>첨부 이미지</b><span>${data.imageName}</span></div>
           <div class="summary-row"><b>내용</b><span>${data.detail}</span></div>
         `;
       }
 
       function getAssignee() {
-        const hour = new Date().getHours();
-        if (hour >= 8 && hour < 17) return "김현우";
-        if (hour >= 17 && hour < 24) return "Michael";
-        return "Sofia";
+        return "신채린";
       }
 
       function submitRequest() {
@@ -1441,8 +1756,8 @@
         document.getElementById("modalThreadTitle").textContent = data.vessel;
         document.getElementById("chatRoomTitle").textContent = `${data.vessel} 기술지원`;
         document.getElementById("chatBody").innerHTML = `
-          <div class="bubble-row me"><div class="bubble"><b>제출 정보</b><br>Vessel Name: ${data.vessel}<br>Hull No.: ${data.hull}<br>요청 날짜: ${data.requestDate}<br>카테고리: ${data.category}${data.techCategory !== "-" ? " / " + data.techCategory : ""}<br>내용: ${data.detail}</div></div>
-          <div class="bubble-row agent"><div class="bubble">${getAssignee()} 담당자가 배정되어 알림이 전송되었습니다.</div></div>
+          <div class="bubble-row me"><div class="bubble"><b>제출 정보</b><br>Vessel Name: ${data.vessel}<br>Hull No.: ${data.hull}<br>요청 날짜: ${data.requestDate}<br>카테고리: ${data.category}${data.techCategory !== "-" ? " / " + data.techCategory : ""}<br>첨부 이미지: ${data.imageName}<br>내용: ${data.detail}</div></div>
+          <div class="bubble-row agent"><div class="bubble">* Hi-Connect 24/7 기술 지원 담당자가 배정되었습니다 *<br>담당자명 : 신채린 (발전기 담당 엔지니어)</div></div>
         `;
         addSummaryRow(data);
         openModal("chatModal");
@@ -1451,10 +1766,18 @@
 
       function addSummaryRow(data) {
         const rows = document.getElementById("summaryRows");
-        const nextNo = rows.children.length + 1;
         const tr = document.createElement("tr");
-        tr.innerHTML = `<td>${nextNo}</td><td>${data.requestDate}</td><td>${data.vessel}</td><td>${data.hull}</td><td><button class="btn" onclick="openSupportDetail('${data.vessel}')">조회</button></td><td><span class="status wait">금주 전송 예정</span></td>`;
+        tr.dataset.name = data.vessel;
+        tr.dataset.hull = data.hull;
+        tr.innerHTML = `<td></td><td>${data.requestDate}</td><td>${data.vessel}</td><td>${data.hull}</td><td><button class="btn" onclick="openSupportDetail('${data.vessel}')">조회</button></td><td><span class="status wait">금주 전송 예정</span></td>`;
         rows.prepend(tr);
+        renumberSummaryRows();
+      }
+
+      function renumberSummaryRows() {
+        document.querySelectorAll("#summaryRows tr").forEach((row, index) => {
+          row.cells[0].textContent = index + 1;
+        });
       }
 
       function sendChat() {
@@ -1471,6 +1794,49 @@
         if (!chatBody) return;
         requestAnimationFrame(() => {
           chatBody.scrollTop = chatBody.scrollHeight;
+        });
+      }
+
+      function toggleChatbot(force) {
+        const widget = document.getElementById("chatbotWidget");
+        const shouldOpen = typeof force === "boolean" ? force : !widget.classList.contains("open");
+        widget.classList.toggle("open", shouldOpen);
+        if (shouldOpen) {
+          document.getElementById("chatbotInput").focus();
+          scrollBotToBottom();
+        }
+      }
+
+      function sendBotChat() {
+        const input = document.getElementById("chatbotInput");
+        const text = input.value.trim();
+        if (!text) return;
+        const body = document.getElementById("chatbotBody");
+        body.insertAdjacentHTML("beforeend", `<div class="bubble-row me"><div class="bubble">${text}</div></div>`);
+        input.value = "";
+        const reply = buildBotReply(text);
+        setTimeout(() => {
+          body.insertAdjacentHTML("beforeend", `<div class="bubble-row agent"><div class="bubble">${reply}</div></div>`);
+          scrollBotToBottom();
+        }, 250);
+        scrollBotToBottom();
+      }
+
+      function buildBotReply(text) {
+        const normalized = text.toLowerCase();
+        if (normalized.includes("bnwas") || normalized.includes("reset")) {
+          return "BNWAS reset 관련 문의로 확인했습니다.<br>1. 호선번호와 장비명을 확인해 주세요.<br>2. DI LED steady on 여부를 점검해 주세요.<br>3. 필요 시 기술 지원 요청 탭에서 이미지와 함께 접수할 수 있습니다.";
+        }
+        if (normalized.includes("도면") || normalized.includes("manual") || normalized.includes("매뉴얼")) {
+          return "자료 조회 문의로 확인했습니다.<br>데이터 관리의 매뉴얼 또는 도면 탭에서 호선명과 호선번호로 검색하시면 관련 자료를 확인할 수 있습니다.<br><br>※ 보안 정책상 해당 자료는 채팅으로 전달이 불가합니다.";
+        }
+        return "접수 전 확인할 내용을 정리했습니다.<br>호선명, 호선번호, 장비명, 발생 증상, 첨부 이미지를 준비해 주세요. 기술 지원 요청 탭에서 제출하면 담당자에게 알림이 전송됩니다.";
+      }
+
+      function scrollBotToBottom() {
+        const body = document.getElementById("chatbotBody");
+        requestAnimationFrame(() => {
+          body.scrollTop = body.scrollHeight;
         });
       }
 
@@ -1500,10 +1866,205 @@
         openModal("imageModal");
       }
 
+      function openHistoryModal(vessel, hull) {
+        document.getElementById("historyModalTitle").textContent = `${vessel} 점검 수리 이력`;
+        document.getElementById("historyModalBody").innerHTML = `
+          <div class="detail-grid">
+            <div class="detail-card"><span>Vessel Name</span><strong>${vessel}</strong></div>
+            <div class="detail-card"><span>Hull No.</span><strong>${hull}</strong></div>
+            <div class="detail-card"><span>최근 점검일</span><strong>2026-05-12</strong></div>
+          </div>
+          <table>
+            <thead><tr><th>구분</th><th>일자</th><th>항목</th><th>작업 내용</th><th>담당자</th><th>결과</th></tr></thead>
+            <tbody>
+              <tr><td>점검</td><td>2026-05-12</td><td>절연저항</td><td>배전반 절연저항 측정 및 기준값 확인</td><td>김현우</td><td><span class="status">정상</span></td></tr>
+              <tr><td>수리</td><td>2026-03-18</td><td>ACB</td><td>동작시간 지연 확인 후 제어부 조정</td><td>이준호</td><td><span class="status">완료</span></td></tr>
+              <tr><td>점검</td><td>2025-12-04</td><td>발전기</td><td>출력 변동 로그 확인 및 센서 상태 점검</td><td>박민재</td><td><span class="status wait">추적 관리</span></td></tr>
+              <tr><td>교체</td><td>2025-09-22</td><td>MCCB</td><td>노후 차단기 2EA 교체 및 부하 테스트</td><td>정도윤</td><td><span class="status">완료</span></td></tr>
+            </tbody>
+          </table>
+          <div class="history-note">
+            권고사항: 다음 입항 전 발전기 출력 로그와 차단기 동작시간을 재확인하고, 이상 징후 발생 시 기술지원 요청으로 자동 연계합니다.
+          </div>
+        `;
+        openModal("historyModal");
+      }
+
+      const supportCases = {
+        "HD Harmony": {
+          vessel: "HD Harmony",
+          hull: "HHI1234",
+          requestDate: "2026-06-04",
+          title: "HD Harmony 기술 지원 상세",
+          requester: "젠슨황 (HMM 오션서비스)",
+          assignee: "신채린",
+          summary: "HD HARMONY 선박의 Navigation 장비에서 A 알람이 발생했으나 BNWAS(Hi-WMS)에는 알람이 표시되지 않아 원인 분석을 진행하였습니다. 현장 점검 결과 케이블 이상은 없었으며, DI 16번(N/C) 채널에 대한 접점 테스트에서 LED가 정상 동작하지 않아 해당 채널 불량으로 확인되었습니다. Hi-WMS IPU-10의 DI 16번 채널 불량으로 판단되어 엔지니어 방선 후 채널 이동 작업이 필요하며, 서비스영업팀으로 인계하여 견적 및 후속 대응을 진행하기로 하였습니다.",
+          diagnosis: [],
+          files: ["Hi-WMS IPU-10 Channel List.pdf", "DI Channel Contact Test Manual.pdf"],
+          chat: [
+            { side: "me", text: "저희 선박 HD HARMONY의 Navigation 장비에서 A 알람이 발생했으나 Maker가 Hyundai인 BNWAS(Hi-WMS)에서 A 알람이 발생하지 않았어요. 왜 그런지 해결책을 주세요." },
+            { side: "agent", text: "* 담당자가 배정되었습니다 *<br><br>안녕하세요. 선박 HD HARMONY의 T/S 담당자로 배정된 신채린입니다.<br><br>우선 본선에 장착된 BNWAS가 Hyundai에서 공급한 Hi-WMS인 점은 확인되었습니다.<br><br>아래 내용을 본선에서 직접 확인해 주시길 부탁드립니다.<br><br>- Navigation 장비에서 A 알람이 발생한 시점에 BNWAS OPU-10 상 알람 표시 여부<br>- Navigation 장비와 BNWAS IPU-10 모듈 간의 케이블 점검<br>- Navigation 장비 측에서 알람이 오류로 발생한 것이 아닌지 여부" },
+            { side: "me", text: "안녕하세요 채린님, 아래 점검 내용을 참고해서 후속 T/S를 부탁드립니다.<br><br>- Navigation 장비에서 A 알람이 발생했을 때, OPU-10 상에는 알람이 발생하지 않았어요.<br>- 케이블 점검을 수행했는데 이상이 없어요.<br>- 실제로 Navigation 장비에서 상태가 안좋아서 A 알람이 발생했어요." },
+            { side: "agent", text: "위 내용으로 봤을 때 Hi-WMS IPU-10의 채널 불량일 가능성일 수도 있습니다. 아래 첨부의 매뉴얼을 토대로 채널 타입(NC/NO)과 채널 번호를 확인해 주세요.<br><br>도면 상에는 DI 16번 채널이지만 더블 체크를 위함입니다." },
+            { side: "me", text: "N/C(Normal Close) 타입이고, DI 16번 채널입니다." },
+            { side: "agent", text: "아래 첨부의 DI 채널 접점 테스트 매뉴얼을 토대로 해당 채널의 불량 여부를 확인해 주세요." },
+            { side: "me", text: "테스트 결과는 아래와 같습니다.<br><br>- 케이블을 뽑았을 때에도 LED가 계속 꺼져있습니다.<br>- 점프 케이블을 꽂았음에도 LED가 계속 꺼져있습니다." },
+            { side: "agent", text: "점검 결과로 해당 DI 16번 채널이 불량으로 확인되었습니다.<br><br>엔지니어가 방선하여 채널 이동 작업을 수행해야 하므로 서비스영업팀으로 인계하여 견적 제출 및 후속 대응을 진행하도록 하겠습니다. 추가 문의사항이 있으시다면 말씀 부탁드립니다." },
+            { side: "me", text: "문제를 신속하고 정확하게 해결해 주셔서 대단히 감사드립니다!" },
+          ],
+        },
+        "HD Pioneer": {
+          vessel: "HD Pioneer",
+          hull: "HHI2480",
+          chat: [
+            { side: "me", text: "발전기 운전 중 출력 변동 알람이 반복 발생합니다. 원인 확인 부탁드립니다." },
+            { side: "agent", text: "담당자가 배정되었습니다. 발전기 부하율, 알람 발생 시간, PMS 로그를 먼저 확인해 주세요." },
+            { side: "me", text: "부하율은 72% 수준이고 PMS 로그에 전압 변동 이력이 있습니다." },
+            { side: "agent", text: "AVR 설정값과 센서 결선 상태를 점검해 주세요. 필요 시 원격 로그를 기반으로 추가 분석하겠습니다." },
+          ],
+        },
+        "HD Frontier": {
+          vessel: "HD Frontier",
+          hull: "HHI3921",
+          chat: [
+            { side: "me", text: "MSB ACB 투입 시간이 평소보다 지연됩니다. 긴급 점검이 필요합니다." },
+            { side: "agent", text: "ACB 제어전원 전압과 closing coil 상태를 확인해 주세요." },
+            { side: "me", text: "제어전원은 정상이고 coil 저항값이 기준보다 높게 측정됩니다." },
+            { side: "agent", text: "closing coil 열화 가능성이 있습니다. 예비품 교체와 동작시간 재측정을 권고드립니다." },
+          ],
+        },
+        "HD Voyager": {
+          vessel: "HD Voyager",
+          hull: "HHI7204",
+          chat: [
+            { side: "me", text: "도면 자료 열람 권한이 없어 확인이 어렵습니다. 접근 가능 여부 확인 부탁드립니다." },
+            { side: "agent", text: "보안 정책상 도면은 채팅으로 전달이 불가합니다. 데이터 관리의 도면 탭에서 권한 확인 후 열람해 주세요." },
+            { side: "me", text: "권한 요청 절차 진행하겠습니다." },
+            { side: "agent", text: "요청 이력을 남겨두었습니다. 승인 완료 후 도면 탭에서 조회 가능합니다." },
+          ],
+        },
+        "HD Ocean": {
+          vessel: "HD Ocean",
+          hull: "HHI4582",
+          chat: [
+            { side: "me", text: "IPU-10 DI 채널 입력이 간헐적으로 누락됩니다." },
+            { side: "agent", text: "해당 채널 번호와 NC/NO 타입을 확인해 주세요. 현장에서는 LED 상태와 단자 체결 상태를 함께 확인해야 합니다." },
+            { side: "me", text: "DI 08번, N/O 타입이며 단자 체결은 정상입니다." },
+            { side: "agent", text: "채널 접점 테스트 후 LED 반응이 없으면 예비 채널 이동 작업을 권고드립니다." },
+          ],
+        },
+        "HD Marine": {
+          vessel: "HD Marine",
+          hull: "HHI5306",
+          chat: [
+            { side: "me", text: "정기 점검 리포트의 차단기 동작시간 항목을 확인하고 싶습니다." },
+            { side: "agent", text: "점검 수리 이력 탭에서 HD Marine을 검색하면 최근 점검 결과를 조회할 수 있습니다." },
+            { side: "me", text: "확인했습니다. 리포트 공유 감사합니다." },
+            { side: "agent", text: "추가 이상 징후가 발생하면 기술 지원 요청으로 접수해 주세요." },
+          ],
+        },
+        CENTUM: {
+          vessel: "CENTUM SCIENCE",
+          hull: "BNWAS-A",
+          requestDate: "2026-06-03",
+          title: "CENTUM SCIENCE / Navigation A Alarm - BNWAS Hi-WMS issue",
+          requester: "선사 담당자 Jake",
+          assignee: "Hi-Connect 24/7 대응팀 채린",
+          summary: "CENTUM SCIENCE 선박의 Navigation 장비에서 A 알람이 발생했으나 BNWAS(Hi-WMS)에는 알람이 표시되지 않아 원인 분석을 진행하였습니다. 현장 점검 결과 케이블 이상은 없었으며, DI 16번(N/C) 채널에 대한 접점 테스트에서 LED가 정상 동작하지 않아 해당 채널 불량으로 확인되었습니다. Hi-WMS IPU-10의 DI 16번 채널 불량으로 판단되어 엔지니어 방선 후 채널 이동 작업이 필요하며, 서비스영업팀으로 인계하여 견적 및 후속 대응을 진행하기로 하였습니다.",
+          diagnosis: [
+            "Navigation 장비에서 A 알람이 발생했으나 BNWAS OPU-10에는 알람이 표시되지 않았습니다.",
+            "Navigation 장비와 BNWAS IPU-10 모듈 간 케이블 점검 결과 이상은 없었습니다.",
+            "DI 16번 N/C 채널 접점 테스트에서 케이블 제거 및 점프 케이블 연결 시에도 LED가 정상 동작하지 않았습니다.",
+            "IPU-10 DI 16번 채널 불량으로 판단되어 엔지니어 방선 후 채널 이동 작업과 견적 후속 대응이 필요합니다.",
+          ],
+          files: ["Hi-WMS IPU-10 Channel List.pdf", "DI Channel Contact Test Manual.pdf"],
+          chat: [
+            { side: "me", speaker: "선사 담당자 Jake", text: "저희 선박 CENTUM SCIENCE의 Navigation 장비에서 A 알람이 발생했으나 Maker가 Hyundai인 BNWAS(Hi-WMS)에서 A 알람이 발생하지 않았어요. 왜 그런지 해결책을 주세요." },
+            { side: "agent", speaker: "Hi-Connect 24/7 대응팀 채린", text: "* 담당자가 배정되었습니다 *<br><br>안녕하세요 Mr. Jake, 선박 CENTUM SCIENCE의 T/S 담당자로 배정된 채린입니다.<br><br>우선 본선에 장착된 BNWAS가 Hyundai에서 공급한 Hi-WMS인 점은 확인되었습니다.<br><br>아래 내용을 본선에서 직접 확인해 주시길 부탁드립니다.<br><br>- Navigation 장비에서 A 알람이 발생한 시점에 BNWAS OPU-10 상 알람 표시 여부<br>- Navigation 장비와 BNWAS IPU-10 모듈 간의 케이블 점검<br>- Navigation 장비 측에서 알람이 오류로 발생한 것이 아닌지 여부" },
+            { side: "me", speaker: "선사 담당자 Jake", text: "안녕하세요 Ms. 채린, 아래 점검 내용을 참고해서 후속 T/S를 부탁드립니다.<br><br>- Navigation 장비에서 A 알람이 발생했을 때, OPU-10 상에는 알람이 발생하지 않았어요.<br>- 케이블 점검을 수행했는데 이상이 없어요.<br>- 실제로 Navigation 장비에서 상태가 안좋아서 A 알람이 발생했어요." },
+            { side: "agent", speaker: "Hi-Connect 24/7 대응팀 채린", text: "위 내용으로 봤을 때 Hi-WMS IPU-10의 채널 불량일 가능성일 수도 있습니다. 아래 첨부의 매뉴얼을 토대로 채널 타입(NC/NO)과 채널 번호를 확인해 주세요.<br><br>도면 상에는 DI 16번 채널이지만 더블 체크를 위함입니다." },
+            { side: "me", speaker: "선사 담당자 Jake", text: "N/C(Normal Close) 타입이고, DI 16번 채널입니다." },
+            { side: "agent", speaker: "Hi-Connect 24/7 대응팀 채린", text: "아래 첨부의 DI 채널 접점 테스트 매뉴얼을 토대로 해당 채널의 불량 여부를 확인해 주세요." },
+            { side: "me", speaker: "선사 담당자 Jake", text: "테스트 결과는 아래와 같습니다.<br><br>- 케이블을 뽑았을 때에도 LED가 계속 꺼져있습니다.<br>- 점프 케이블을 꽂았음에도 LED가 계속 꺼져있습니다." },
+            { side: "agent", speaker: "Hi-Connect 24/7 대응팀 채린", text: "점검 결과로 해당 DI 16번 채널이 불량으로 확인되었습니다.<br><br>엔지니어가 방선하여 채널 이동 작업을 수행해야 하므로 서비스영업팀으로 인계하여 견적 제출 및 후속 대응을 진행하도록 하겠습니다. 추가 문의사항이 있으시다면 말씀 부탁드립니다." },
+            { side: "me", speaker: "선사 담당자 Jake", text: "문제를 신속하고 정확하게 해결해 주셔서 대단히 감사드립니다!" },
+          ],
+        },
+        HMD2690: {
+          vessel: "SIFSAFA H",
+          hull: "HMD2690",
+          requestDate: "2026-03-04",
+          title: "HiWMS-PE / HMD2690 / SIFSAFA H - BNWAS issue",
+          requester: "안태 대리",
+          assignee: "장지원 매니저",
+          summary: "BNWAS 연동 장비에서 ICT reset이 정상 동작하지 않는 증상으로, HiWMS-PE와 reset unit의 DI 채널 및 외부 접점 신호 상태 확인이 필요한 건입니다.",
+          diagnosis: [
+            "ICT reset signal 중 1개 이상의 신호가 steady on 상태일 때 main unit에서만 reset이 되는 경우가 많습니다.",
+            "No.1 IPU-10의 DI 28번 LED가 steady on인지 먼저 확인합니다.",
+            "DI 28번 케이블 제거 시 LED가 off되고 reset unit에서 ICT reset이 정상 동작하는지 확인합니다.",
+            "DI 28번이 원인이 아니면 INT-DI 04번 채널 LED와 reset unit TB4/5 배선을 순차 확인합니다.",
+          ],
+          files: ["HMD2690_NO.1 IPU DI LIST.pdf", "HiWMS(PE) - How to check the status of INT-DI04.pdf", "HMD2690_Reset unit.pdf"],
+          chat: [
+            { side: "me", speaker: "안태 대리", text: "HMD2690 / SIFSAFA H 관련 BNWAS issue 문의드립니다.<br>HiWMS-PE에서 ICT reset이 reset unit이나 BNWAS 연동 장비에서 동작하지 않고 main unit에서만 reset되는 증상이 있습니다.<br><br>첨부파일 3건을 확인 부탁드립니다." },
+            { side: "agent", speaker: "장지원 매니저", text: "확인 결과, ICT reset signal 중 하나 이상이 steady on 상태일 때 해당 증상이 발생하는 경우가 많습니다.<br><br>No.1 IPU-10의 DI 28번 LED가 steady on인지 우선 확인해 주세요." },
+            { side: "agent", speaker: "장지원 매니저", text: "DI 28번 LED가 steady on이면 연결 케이블을 제거했을 때 LED가 off되는지 확인하고, off 상태에서 reset unit의 ICT reset 동작 여부를 확인해 주세요." },
+            { side: "agent", speaker: "장지원 매니저", text: "DI 28번이 정상이라면 INT-DI 04번 채널 LED 상태를 확인한 뒤, reset unit TB4/5 결선 케이블을 하나씩 제거하며 원인 장비를 찾으면 됩니다." },
+            { side: "agent", speaker: "장지원 매니저", text: "ICT reset이 정상 동작하면 해당 reset unit의 접점 불량 가능성이 높으므로 reset unit 교체를 권고드립니다." },
+          ],
+        },
+      };
+
+      function renderAttachmentList(files) {
+        return files.map((file) => `<span class="status">${file}</span>`).join(" ");
+      }
+
       function openSupportDetail(vessel) {
+        const data = supportCases[vessel];
+        if (data) {
+          document.getElementById("supportDetailTitle").textContent = data.title;
+          document.getElementById("supportDetailBody").innerHTML = `
+            <div class="summary-box">
+              <div class="summary-row"><b>호선명</b><span>${data.vessel}</span></div>
+              <div class="summary-row"><b>호선번호</b><span>${data.hull}</span></div>
+              <div class="summary-row"><b>요청 날짜</b><span>${data.requestDate}</span></div>
+              <div class="summary-row"><b>요청자</b><span>${data.requester}</span></div>
+              <div class="summary-row"><b>담당자</b><span>${data.assignee}</span></div>
+              <div class="summary-row"><b>요약</b><span>${data.summary}</span></div>
+              <div class="summary-row"><b>첨부파일</b><span>${renderAttachmentList(data.files)}</span></div>
+            </div>
+            ${data.diagnosis.length ? `<div class="history-note">${data.diagnosis.map((item) => `<p>${item}</p>`).join("")}</div>` : ""}
+            <div style="margin-top: 16px; display: flex; justify-content: flex-end">
+              <button class="btn primary" onclick="openSupportChat('${vessel}')">채팅 내용 보기</button>
+            </div>
+          `;
+          openModal("supportDetailModal");
+          return;
+        }
         document.getElementById("supportDetailTitle").textContent = `${vessel} 기술 지원 상세`;
-        document.getElementById("detailVessel").textContent = vessel;
+        document.getElementById("supportDetailBody").innerHTML = `
+          <div class="summary-box">
+            <div class="summary-row"><b>Vessel</b><span>${vessel}</span></div>
+            <div class="summary-row"><b>Hull No.</b><span>HHI1234</span></div>
+            <div class="summary-row"><b>요청 내용</b><span>MSB #1 ACB 도면 요청</span></div>
+            <div class="summary-row"><b>요청 날짜</b><span>2026-05-25</span></div>
+            <div class="summary-row"><b>처리 상태</b><span>공식 상담 채널 접수 및 주간 요약 전송 대기</span></div>
+          </div>
+        `;
         openModal("supportDetailModal");
+      }
+
+      function openSupportChat(caseId) {
+        const data = supportCases[caseId];
+        if (!data) return;
+        closeModal("supportDetailModal");
+        document.getElementById("modalThreadTitle").textContent = `${data.hull} ${data.vessel}`;
+        document.getElementById("chatRoomTitle").textContent = `${data.vessel} 기술지원`;
+        document.getElementById("chatBody").innerHTML = data.chat
+          .map((message) => `<div class="bubble-row ${message.side}"><div class="bubble">${message.speaker ? `<b>${message.speaker}</b><br>` : ""}${message.text}</div></div>`)
+          .join("");
+        openModal("chatModal");
+        document.getElementById("chatBody").scrollTop = 0;
       }
 
       document.querySelectorAll(".modal").forEach((modal) => {
@@ -1520,6 +2081,8 @@
 
       setStep(1);
       updateCategoryUI();
+      document.body.classList.add("home-active");
     </script>
   </body>
 </html>
+
